@@ -3,169 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insights | Ankit Kumar</title>
+    <title>Insights | Achal Tyagi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --accent-purple: #764ba2;
-            --accent-pink: #f5576c;
-            --accent-blue: #4facfe;
-            --accent-cyan: #00f2fe;
-            --bg-dark: #0f0f1a;
-            --bg-card: #1a1a2e;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c8;
-            --text-muted: #6c6c8a;
+            --navy: #e2e8f4; --navy-light: #c8d0e0;
+            --blue: #6b8fff; --blue-soft: rgba(107, 143, 255, 0.1); --blue-border: rgba(107, 143, 255, 0.25);
+            --teal: #2dd4bf; --teal-soft: rgba(45, 212, 191, 0.1); --teal-border: rgba(45, 212, 191, 0.25);
+            --violet: #a78bfa; --violet-soft: rgba(167, 139, 250, 0.1); --violet-border: rgba(167, 139, 250, 0.25);
+            --coral: #fb7185; --coral-soft: rgba(251, 113, 133, 0.1); --coral-border: rgba(251, 113, 133, 0.25);
+            --amber: #fbbf24; --amber-soft: rgba(251, 191, 36, 0.1); --amber-border: rgba(251, 191, 36, 0.25);
+            --bg: #0b0f1a; --bg-white: #111827; --border: #1e2a3a;
+            --text-dark: #e2e8f4; --text-body: #94a3b8; --text-muted: #4f6272;
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.4); --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+            --radius: 12px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0b0f1a 0%, #0f1623 40%, #10141f 70%, #0b0f1a 100%); background-attachment: fixed; color: var(--text-body); -webkit-font-smoothing: antialiased; position: relative; }
+        body::before { content: ''; position: fixed; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(107, 143, 255, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
+        body::after { content: ''; position: fixed; bottom: -15%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
 
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(15, 15, 26, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; position: relative; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--gradient-2); border-radius: 2px; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 0 3rem; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 15, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 42, 58, 0.8); }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--blue); }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-dark); }
+        .nav-links a.active { color: var(--blue); font-weight: 600; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 25px; height: 2px; background: var(--text-primary); transition: 0.3s; }
+        .hamburger span { width: 22px; height: 1.5px; background: var(--navy); transition: 0.3s; }
 
-        .page-header { padding: 8rem 2rem 4rem; text-align: center; position: relative; }
-        .page-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 0%, rgba(250, 112, 154, 0.1) 0%, transparent 60%); }
-        .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; position: relative; }
-        .page-header h1 .gradient-text { background: var(--gradient-4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .page-header p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem; position: relative; }
+        .page-header { padding: 10rem 3rem 4rem; max-width: 800px; margin: 0 auto; }
+        .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+        .section-label::before { content: ''; width: 28px; height: 2px; background: var(--teal); }
+        .page-header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 4vw, 3rem); color: var(--navy); font-weight: 400; letter-spacing: -0.5px; }
+        .page-header h1 .accent { color: var(--blue); }
+        .page-header p.subtitle { color: var(--text-body); font-size: 1.05rem; margin-top: 0.75rem; line-height: 1.7; }
 
-        .insights-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 2rem 4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+        .content { max-width: 800px; margin: 0 auto; padding: 0 3rem 5rem; }
+
+        .insights-list { display: flex; flex-direction: column; gap: 1.25rem; }
 
         .insight-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 2.5rem;
+            transition: all 0.25s;
             position: relative;
             overflow: hidden;
         }
 
-        .insight-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.1);
-        }
-
-        .insight-card::after {
+        .insight-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            opacity: 0.03;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
         }
 
-        .insight-card:nth-child(1)::after { background: #667eea; }
-        .insight-card:nth-child(2)::after { background: #f5576c; }
-        .insight-card:nth-child(3)::after { background: #4facfe; }
-        .insight-card:nth-child(4)::after { background: #fa709a; }
+        .insight-card:nth-child(1)::before { background: var(--blue); }
+        .insight-card:nth-child(2)::before { background: var(--teal); }
+        .insight-card:nth-child(3)::before { background: var(--violet); }
+        .insight-card:nth-child(4)::before { background: var(--amber); }
+
+        .insight-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+        .insight-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
 
         .insight-category {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            font-size: 0.75rem;
-            border-radius: 50px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+            padding: 0.25rem 0.65rem; font-size: 0.72rem; font-weight: 600;
+            border-radius: 5px; text-transform: uppercase; letter-spacing: 0.5px;
         }
 
-        .insight-card:nth-child(1) .insight-category { background: rgba(102, 126, 234, 0.15); color: #667eea; }
-        .insight-card:nth-child(2) .insight-category { background: rgba(245, 87, 108, 0.15); color: #f5576c; }
-        .insight-card:nth-child(3) .insight-category { background: rgba(79, 172, 254, 0.15); color: #4facfe; }
-        .insight-card:nth-child(4) .insight-category { background: rgba(250, 112, 154, 0.15); color: #fa709a; }
+        .cat-leadership { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-border); }
+        .cat-strategy { background: var(--teal-soft); color: var(--teal); border: 1px solid var(--teal-border); }
+        .cat-productivity { background: var(--violet-soft); color: var(--violet); border: 1px solid var(--violet-border); }
+        .cat-career { background: var(--amber-soft); color: var(--amber); border: 1px solid var(--amber-border); }
+
+        .insight-date { font-size: 0.78rem; color: var(--text-muted); }
 
         .insight-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.3;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem; font-weight: 400; color: var(--navy);
+            margin-bottom: 0.6rem; line-height: 1.35;
         }
 
-        .insight-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
+        .insight-card p { font-size: 0.9rem; line-height: 1.8; color: var(--text-body); }
 
-        .insight-date {
-            color: var(--text-muted);
-            font-size: 0.8rem;
+        .cta-box {
+            background: var(--bg-white); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 2.5rem; text-align: center; margin-top: 3rem;
         }
-
-        .cta-section {
-            text-align: center;
-            padding: 3rem 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta-section p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
+        .cta-box p { font-size: 0.95rem; color: var(--text-body); margin-bottom: 1.25rem; line-height: 1.7; }
         .btn {
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--gradient-2);
-            color: white;
-            border: none;
+            padding: 0.8rem 1.6rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+            text-decoration: none; transition: all 0.2s; background: var(--blue); color: white; display: inline-block;
         }
+        .btn:hover { background: #3b5de7; box-shadow: 0 4px 16px rgba(74, 108, 247, 0.3); transform: translateY(-1px); }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
-        }
-
-        footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.85rem; }
-        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
-        .social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-        .social-links a:hover { color: var(--accent-pink); }
+        .divider { max-width: 800px; margin: 0 auto; padding: 0 3rem; }
+        .divider hr { border: none; height: 1px; background: var(--border); }
+        footer { padding: 3rem 3rem; max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
+        .social-links { display: flex; gap: 2rem; }
+        .social-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+        .social-links a:hover { color: var(--blue); }
 
         @media (max-width: 768px) {
+            nav { padding: 0 1.5rem; }
             .hamburger { display: flex; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(20px); flex-direction: column; padding: 1rem 2rem 2rem; gap: 1rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(11, 15, 26, 0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); }
             .nav-links.open { display: flex; }
-            .insight-card { padding: 1.8rem; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .content { padding: 0 1.5rem 3rem; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">AK.</a>
+        <a href="index.html" class="logo">Achal <span>Tyagi</span></a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -180,52 +138,64 @@
     </nav>
 
     <div class="page-header">
-        <h1>My <span class="gradient-text">Insights</span></h1>
-        <p>Thoughts, lessons, and perspectives from my professional journey.</p>
+        <p class="section-label">Insights</p>
+        <h1>Thoughts &amp; <span class="accent">reflections</span></h1>
+        <p class="subtitle">Lessons, perspectives, and ideas from my professional journey.</p>
     </div>
 
-    <div class="insights-grid">
-        <article class="insight-card">
-            <span class="insight-category">Leadership</span>
-            <h3>Why the Best Leaders Ask More Questions Than They Answer</h3>
-            <p>Reflecting on how a shift from directive leadership to inquiry-driven management transformed team dynamics and project outcomes. The power of curiosity in building trust and surfacing better ideas.</p>
-            <span class="insight-date">March 2026</span>
-        </article>
+    <div class="content">
+        <div class="insights-list">
+            <article class="insight-card">
+                <div class="insight-meta">
+                    <span class="insight-category cat-leadership">Leadership</span>
+                    <span class="insight-date">March 2026</span>
+                </div>
+                <h3>Why the best leaders ask more questions than they answer</h3>
+                <p>Reflecting on how a shift from directive leadership to inquiry-driven management transformed team dynamics and project outcomes. The power of curiosity in building trust and surfacing better ideas.</p>
+            </article>
 
-        <article class="insight-card">
-            <span class="insight-category">Strategy</span>
-            <h3>Navigating Ambiguity: A Framework for Decision-Making Under Uncertainty</h3>
-            <p>In complex projects, perfect information rarely exists. Here's the mental model I use to make confident decisions when the path forward isn't clear, and how it's served me across different roles.</p>
-            <span class="insight-date">January 2026</span>
-        </article>
+            <article class="insight-card">
+                <div class="insight-meta">
+                    <span class="insight-category cat-strategy">Strategy</span>
+                    <span class="insight-date">January 2026</span>
+                </div>
+                <h3>Navigating ambiguity: a framework for decision-making under uncertainty</h3>
+                <p>In complex projects, perfect information rarely exists. Here's the mental model I use to make confident decisions when the path forward isn't clear, and how it's served me across different roles.</p>
+            </article>
 
-        <article class="insight-card">
-            <span class="insight-category">Productivity</span>
-            <h3>The Myth of Multitasking and What Actually Works</h3>
-            <p>After years of juggling multiple projects, I discovered that deep focus on one thing at a time consistently outperforms scattered attention. Practical strategies for reclaiming your focus in a noisy world.</p>
-            <span class="insight-date">November 2025</span>
-        </article>
+            <article class="insight-card">
+                <div class="insight-meta">
+                    <span class="insight-category cat-productivity">Productivity</span>
+                    <span class="insight-date">November 2025</span>
+                </div>
+                <h3>The myth of multitasking and what actually works</h3>
+                <p>After years of juggling multiple projects, I discovered that deep focus on one thing at a time consistently outperforms scattered attention. Practical strategies for reclaiming focus in a noisy world.</p>
+            </article>
 
-        <article class="insight-card">
-            <span class="insight-category">Career</span>
-            <h3>Lessons from Switching Industries: What Transfers and What Doesn't</h3>
-            <p>Moving between industries taught me which skills are truly portable and which assumptions I needed to unlearn. A candid look at the challenges and unexpected advantages of being a generalist.</p>
-            <span class="insight-date">September 2025</span>
-        </article>
+            <article class="insight-card">
+                <div class="insight-meta">
+                    <span class="insight-category cat-career">Career</span>
+                    <span class="insight-date">September 2025</span>
+                </div>
+                <h3>Lessons from switching industries: what transfers and what doesn't</h3>
+                <p>Moving between industries taught me which skills are truly portable and which assumptions I needed to unlearn. A candid look at the challenges and unexpected advantages of being a generalist.</p>
+            </article>
+        </div>
+
+        <div class="cta-box">
+            <p>Enjoyed these reflections? I'd love to hear your thoughts or discuss ideas further.</p>
+            <a href="contact.html" class="btn">Get in touch</a>
+        </div>
     </div>
 
-    <div class="cta-section">
-        <p>Enjoyed these insights? I'd love to hear your thoughts or discuss ideas further.</p>
-        <a href="contact.html" class="btn">Let's Connect &rarr;</a>
-    </div>
-
+    <div class="divider"><hr></div>
     <footer>
+        <p>&copy; 2026 Achal Tyagi</p>
         <div class="social-links">
             <a href="https://linkedin.com" target="_blank">LinkedIn</a>
             <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="mailto:ankit.kumar@fixify.com">Email</a>
+            <a href="mailto:achal.tyagi@email.com">Email</a>
         </div>
-        <p>&copy; 2026 Ankit Kumar. All rights reserved.</p>
     </footer>
 </body>
 </html>

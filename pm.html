@@ -3,185 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Management | Ankit Kumar</title>
+    <title>Project Management | Achal Tyagi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --accent-purple: #764ba2;
-            --accent-pink: #f5576c;
-            --accent-blue: #4facfe;
-            --accent-cyan: #00f2fe;
-            --bg-dark: #0f0f1a;
-            --bg-card: #1a1a2e;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c8;
-            --text-muted: #6c6c8a;
+            --navy: #e2e8f4; --navy-light: #c8d0e0;
+            --blue: #6b8fff; --blue-soft: rgba(107, 143, 255, 0.1); --blue-border: rgba(107, 143, 255, 0.25);
+            --teal: #2dd4bf; --teal-soft: rgba(45, 212, 191, 0.1); --teal-border: rgba(45, 212, 191, 0.25);
+            --violet: #a78bfa; --violet-soft: rgba(167, 139, 250, 0.1); --violet-border: rgba(167, 139, 250, 0.25);
+            --coral: #fb7185; --coral-soft: rgba(251, 113, 133, 0.1); --coral-border: rgba(251, 113, 133, 0.25);
+            --bg: #0b0f1a; --bg-white: #111827; --border: #1e2a3a;
+            --text-dark: #e2e8f4; --text-body: #94a3b8; --text-muted: #4f6272;
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.4); --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+            --radius: 12px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0b0f1a 0%, #0f1623 40%, #10141f 70%, #0b0f1a 100%); background-attachment: fixed; color: var(--text-body); -webkit-font-smoothing: antialiased; position: relative; }
+        body::before { content: ''; position: fixed; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(107, 143, 255, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
+        body::after { content: ''; position: fixed; bottom: -15%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
 
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(15, 15, 26, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; position: relative; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--gradient-2); border-radius: 2px; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 0 3rem; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 15, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 42, 58, 0.8); }
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--blue); }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-dark); }
+        .nav-links a.active { color: var(--blue); font-weight: 600; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 25px; height: 2px; background: var(--text-primary); transition: 0.3s; }
+        .hamburger span { width: 22px; height: 1.5px; background: var(--navy); transition: 0.3s; }
 
-        .page-header { padding: 8rem 2rem 4rem; text-align: center; position: relative; }
-        .page-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 0%, rgba(79, 172, 254, 0.1) 0%, transparent 60%); }
-        .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; position: relative; }
-        .page-header h1 .gradient-text { background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .page-header p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem; position: relative; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .page-header { padding: 10rem 3rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+        .section-label::before { content: ''; width: 28px; height: 2px; background: var(--teal); }
+        .page-header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 4vw, 3rem); color: var(--navy); font-weight: 400; letter-spacing: -0.5px; }
+        .page-header h1 .accent { color: var(--blue); }
+        .page-header p.subtitle { color: var(--text-body); font-size: 1.05rem; margin-top: 0.75rem; line-height: 1.7; max-width: 560px; }
 
-        .pm-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem 2rem 4rem;
-        }
+        .content { max-width: 1200px; margin: 0 auto; padding: 0 3rem 5rem; }
 
-        .pm-approach {
+        .approach-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 4rem;
         }
 
         .approach-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 2rem;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.8rem;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .approach-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.1);
+        .approach-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 3px;
         }
 
-        .approach-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin: 0 auto 1.2rem;
-        }
+        .approach-card:nth-child(1)::before { background: var(--blue); }
+        .approach-card:nth-child(2)::before { background: var(--teal); }
+        .approach-card:nth-child(3)::before { background: var(--violet); }
+        .approach-card:nth-child(4)::before { background: var(--coral); }
 
-        .approach-card:nth-child(1) .approach-icon { background: rgba(102, 126, 234, 0.15); }
-        .approach-card:nth-child(2) .approach-icon { background: rgba(245, 87, 108, 0.15); }
-        .approach-card:nth-child(3) .approach-icon { background: rgba(79, 172, 254, 0.15); }
-        .approach-card:nth-child(4) .approach-icon { background: rgba(250, 112, 154, 0.15); }
+        .approach-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 
-        .approach-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.15rem;
+        .approach-step {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
             margin-bottom: 0.75rem;
         }
 
-        .approach-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
+        .approach-card:nth-child(1) .approach-step { color: var(--blue); opacity: 0.4; }
+        .approach-card:nth-child(2) .approach-step { color: var(--teal); opacity: 0.4; }
+        .approach-card:nth-child(3) .approach-step { color: var(--violet); opacity: 0.4; }
+        .approach-card:nth-child(4) .approach-step { color: var(--coral); opacity: 0.4; }
+
+        .approach-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+        .approach-card p { font-size: 0.85rem; line-height: 1.7; color: var(--text-body); }
+
+        .subsection-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem; color: var(--navy); font-weight: 400; margin-bottom: 2rem;
         }
 
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .case-studies {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+        .case-list { display: flex; flex-direction: column; gap: 1.25rem; }
 
         .case-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             padding: 2.5rem;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2rem;
-            transition: all 0.3s;
-            align-items: start;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .case-card:hover {
-            border-color: rgba(255,255,255,0.1);
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
         }
 
-        .case-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            opacity: 0.15;
-            line-height: 1;
-        }
+        .case-card:nth-child(1)::before { background: var(--blue); }
+        .case-card:nth-child(2)::before { background: var(--teal); }
+        .case-card:nth-child(3)::before { background: var(--violet); }
 
-        .case-card:nth-child(1) .case-number { color: #667eea; }
-        .case-card:nth-child(2) .case-number { color: #f5576c; }
-        .case-card:nth-child(3) .case-number { color: #4facfe; }
+        .case-card:hover { box-shadow: var(--shadow-md); }
 
-        .case-details h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
+        .case-header { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 0.75rem; }
 
-        .case-details p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
+        .case-num { font-family: 'DM Serif Display', serif; font-size: 1.2rem; flex-shrink: 0; }
+        .case-card:nth-child(1) .case-num { color: var(--blue); opacity: 0.5; }
+        .case-card:nth-child(2) .case-num { color: var(--teal); opacity: 0.5; }
+        .case-card:nth-child(3) .case-num { color: var(--violet); opacity: 0.5; }
 
-        .case-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
+        .case-header h3 { font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+        .case-card > p { font-size: 0.9rem; line-height: 1.8; color: var(--text-body); margin-bottom: 1rem; padding-left: 2.8rem; }
 
-        .case-meta span {
-            padding: 0.35rem 0.8rem;
-            font-size: 0.75rem;
-            border-radius: 50px;
-            background: rgba(102, 126, 234, 0.1);
-            color: var(--accent-blue);
-            border: 1px solid rgba(102, 126, 234, 0.2);
-        }
+        .case-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding-left: 2.8rem; }
+        .case-card:nth-child(1) .case-tags span { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-border); }
+        .case-card:nth-child(2) .case-tags span { background: var(--teal-soft); color: var(--teal); border: 1px solid var(--teal-border); }
+        .case-card:nth-child(3) .case-tags span { background: var(--violet-soft); color: var(--violet); border: 1px solid var(--violet-border); }
+        .case-tags span { padding: 0.3rem 0.7rem; font-size: 0.75rem; border-radius: 5px; font-weight: 500; }
 
-        footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.85rem; }
-        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
-        .social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-        .social-links a:hover { color: var(--accent-pink); }
+        .divider { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+        .divider hr { border: none; height: 1px; background: var(--border); }
+        footer { padding: 3rem 3rem; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
+        .social-links { display: flex; gap: 2rem; }
+        .social-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+        .social-links a:hover { color: var(--blue); }
 
         @media (max-width: 768px) {
+            nav { padding: 0 1.5rem; }
             .hamburger { display: flex; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(20px); flex-direction: column; padding: 1rem 2rem 2rem; gap: 1rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(11, 15, 26, 0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); }
             .nav-links.open { display: flex; }
-            .case-card { grid-template-columns: 1fr; gap: 1rem; }
-            .case-number { font-size: 2rem; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .content { padding: 0 1.5rem 3rem; }
+            .approach-grid { grid-template-columns: 1fr 1fr; }
+            .case-card > p, .case-tags { padding-left: 0; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">AK.</a>
+        <a href="index.html" class="logo">Achal <span>Tyagi</span></a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -196,82 +172,84 @@
     </nav>
 
     <div class="page-header">
-        <h1>Project <span class="gradient-text">Management</span></h1>
-        <p>How I approach planning, execution, and delivery of complex initiatives.</p>
+        <p class="section-label">Project Management</p>
+        <h1>How I approach <span class="accent">delivery</span></h1>
+        <p class="subtitle">My methodology for planning, executing, and delivering complex initiatives on time and with impact.</p>
     </div>
 
-    <div class="pm-content">
-        <div class="pm-approach">
+    <div class="content">
+        <div class="approach-grid">
             <div class="approach-card">
-                <div class="approach-icon">&#127919;</div>
-                <h3>Discovery &amp; Scoping</h3>
-                <p>Deep-dive into requirements, stakeholder mapping, and defining clear success criteria before any work begins.</p>
+                <div class="approach-step">01</div>
+                <h3>Discover &amp; Scope</h3>
+                <p>Stakeholder mapping, requirements gathering, and defining clear success criteria.</p>
             </div>
             <div class="approach-card">
-                <div class="approach-icon">&#128202;</div>
-                <h3>Planning &amp; Estimation</h3>
-                <p>Work breakdown structures, resource allocation, risk assessment, and realistic timeline creation.</p>
+                <div class="approach-step">02</div>
+                <h3>Plan &amp; Estimate</h3>
+                <p>Work breakdown, resource allocation, risk assessment, and timeline creation.</p>
             </div>
             <div class="approach-card">
-                <div class="approach-icon">&#9881;&#65039;</div>
-                <h3>Execution &amp; Monitoring</h3>
-                <p>Agile sprints, daily standups, progress tracking, and proactive issue resolution to keep things on track.</p>
+                <div class="approach-step">03</div>
+                <h3>Execute &amp; Monitor</h3>
+                <p>Agile sprints, progress tracking, and proactive issue resolution.</p>
             </div>
             <div class="approach-card">
-                <div class="approach-icon">&#127941;</div>
-                <h3>Delivery &amp; Retrospective</h3>
-                <p>Smooth handoffs, stakeholder presentations, lessons learned, and continuous improvement for future projects.</p>
+                <div class="approach-step">04</div>
+                <h3>Deliver &amp; Reflect</h3>
+                <p>Stakeholder handoffs, retrospectives, and continuous improvement.</p>
             </div>
         </div>
 
-        <h2 class="section-title">Case Studies</h2>
-        <div class="case-studies">
+        <h2 class="subsection-title">Case studies</h2>
+        <div class="case-list">
             <div class="case-card">
-                <span class="case-number">01</span>
-                <div class="case-details">
+                <div class="case-header">
+                    <span class="case-num">01</span>
                     <h3>Cross-Departmental Process Overhaul</h3>
-                    <p>Led a 6-month initiative to redesign operational workflows across three departments, reducing cycle time by 35% and improving stakeholder satisfaction scores. Managed a team of 12 and coordinated with senior leadership throughout.</p>
-                    <div class="case-meta">
-                        <span>Stakeholder Management</span>
-                        <span>Process Design</span>
-                        <span>Change Management</span>
-                    </div>
+                </div>
+                <p>Led a 6-month initiative to redesign operational workflows across three departments, reducing cycle time by 35% and improving stakeholder satisfaction scores. Managed a team of 12 and coordinated with senior leadership throughout.</p>
+                <div class="case-tags">
+                    <span>Stakeholder Management</span>
+                    <span>Process Design</span>
+                    <span>Change Management</span>
                 </div>
             </div>
             <div class="case-card">
-                <span class="case-number">02</span>
-                <div class="case-details">
+                <div class="case-header">
+                    <span class="case-num">02</span>
                     <h3>Product Launch Coordination</h3>
-                    <p>Coordinated the end-to-end launch of a new product feature involving engineering, design, marketing, and customer success teams. Delivered on schedule with zero critical defects in the first 30 days post-launch.</p>
-                    <div class="case-meta">
-                        <span>Agile / Scrum</span>
-                        <span>Risk Mitigation</span>
-                        <span>Cross-functional</span>
-                    </div>
+                </div>
+                <p>Coordinated the end-to-end launch of a new product feature involving engineering, design, marketing, and customer success teams. Delivered on schedule with zero critical defects in the first 30 days post-launch.</p>
+                <div class="case-tags">
+                    <span>Agile / Scrum</span>
+                    <span>Risk Mitigation</span>
+                    <span>Cross-functional</span>
                 </div>
             </div>
             <div class="case-card">
-                <span class="case-number">03</span>
-                <div class="case-details">
+                <div class="case-header">
+                    <span class="case-num">03</span>
                     <h3>Data Migration &amp; System Integration</h3>
-                    <p>Managed a complex data migration from a legacy system to a modern cloud platform. Created detailed WBS, maintained a risk register, and ensured zero data loss during the transition period.</p>
-                    <div class="case-meta">
-                        <span>WBS</span>
-                        <span>Risk Register</span>
-                        <span>Technical PM</span>
-                    </div>
+                </div>
+                <p>Managed a complex data migration from a legacy system to a modern cloud platform. Created detailed WBS, maintained a risk register, and ensured zero data loss during the transition period.</p>
+                <div class="case-tags">
+                    <span>WBS</span>
+                    <span>Risk Register</span>
+                    <span>Technical PM</span>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="divider"><hr></div>
     <footer>
+        <p>&copy; 2026 Achal Tyagi</p>
         <div class="social-links">
             <a href="https://linkedin.com" target="_blank">LinkedIn</a>
             <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="mailto:ankit.kumar@fixify.com">Email</a>
+            <a href="mailto:achal.tyagi@email.com">Email</a>
         </div>
-        <p>&copy; 2026 Ankit Kumar. All rights reserved.</p>
     </footer>
 </body>
 </html>
