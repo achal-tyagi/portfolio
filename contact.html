@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Achal Tyagi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --accent-purple: #764ba2;
+            --accent-pink: #f5576c;
+            --accent-blue: #4facfe;
+            --accent-cyan: #00f2fe;
+            --bg-dark: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c8;
+            --text-muted: #6c6c8a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(15, 15, 26, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--gradient-2); border-radius: 2px; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-primary); transition: 0.3s; }
+
+        .contact-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+
+        .contact-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(245, 87, 108, 0.06) 0%, transparent 50%);
+        }
+
+        .contact-container {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .contact-info h1 .gradient-text {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-info > p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-method:hover {
+            border-color: rgba(255,255,255,0.12);
+            transform: translateX(5px);
+        }
+
+        .contact-method-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-method:nth-child(1) .contact-method-icon { background: rgba(102, 126, 234, 0.15); }
+        .contact-method:nth-child(2) .contact-method-icon { background: rgba(245, 87, 108, 0.15); }
+        .contact-method:nth-child(3) .contact-method-icon { background: rgba(79, 172, 254, 0.15); }
+
+        .contact-method-text h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-method-text p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .contact-form-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .contact-form-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-pink);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+        }
+
+        footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.85rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .social-links a:hover { color: var(--accent-pink); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(20px); flex-direction: column; padding: 1rem 2rem 2rem; gap: 1rem; }
+            .nav-links.open { display: flex; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">AT.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="pm.html">PM</a></li>
+            <li><a href="insights.html">Insights</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="contact-wrapper">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h1>Let's <span class="gradient-text">Connect</span></h1>
+                <p>Whether you have a project idea, a collaboration opportunity, or just want to say hello — I'd love to hear from you.</p>
+                <div class="contact-methods">
+                    <a href="mailto:achaltyagi02@gmail.com" class="contact-method">
+                        <div class="contact-method-icon">&#9993;&#65039;</div>
+                        <div class="contact-method-text">
+                            <h4>Email</h4>
+                            <p>achaltyagi02@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="contact-method">
+                        <div class="contact-method-icon">&#128101;</div>
+                        <div class="contact-method-text">
+                            <h4>LinkedIn</h4>
+                            <p>Connect with me professionally</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="contact-method">
+                        <div class="contact-method-icon">&#128187;</div>
+                        <div class="contact-method-text">
+                            <h4>GitHub</h4>
+                            <p>Check out my code</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-card">
+                <h3>Send a Message</h3>
+                <form action="https://formspree.io/f/your-form-id" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your idea..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="mailto:achaltyagi02@gmail.com">Email</a>
+        </div>
+        <p>&copy; 2026 Achal Tyagi. All rights reserved.</p>
+    </footer>
+</body>
+</html>

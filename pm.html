@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management | Ankit Kumar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --accent-purple: #764ba2;
+            --accent-pink: #f5576c;
+            --accent-blue: #4facfe;
+            --accent-cyan: #00f2fe;
+            --bg-dark: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c8;
+            --text-muted: #6c6c8a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(15, 15, 26, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--gradient-2); border-radius: 2px; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-primary); transition: 0.3s; }
+
+        .page-header { padding: 8rem 2rem 4rem; text-align: center; position: relative; }
+        .page-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 0%, rgba(79, 172, 254, 0.1) 0%, transparent 60%); }
+        .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; position: relative; }
+        .page-header h1 .gradient-text { background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-header p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem; position: relative; max-width: 650px; margin-left: auto; margin-right: auto; }
+
+        .pm-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .pm-approach {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .approach-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .approach-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .approach-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.2rem;
+        }
+
+        .approach-card:nth-child(1) .approach-icon { background: rgba(102, 126, 234, 0.15); }
+        .approach-card:nth-child(2) .approach-icon { background: rgba(245, 87, 108, 0.15); }
+        .approach-card:nth-child(3) .approach-icon { background: rgba(79, 172, 254, 0.15); }
+        .approach-card:nth-child(4) .approach-icon { background: rgba(250, 112, 154, 0.15); }
+
+        .approach-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .approach-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .case-studies {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .case-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            transition: all 0.3s;
+            align-items: start;
+        }
+
+        .case-card:hover {
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .case-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            opacity: 0.15;
+            line-height: 1;
+        }
+
+        .case-card:nth-child(1) .case-number { color: #667eea; }
+        .case-card:nth-child(2) .case-number { color: #f5576c; }
+        .case-card:nth-child(3) .case-number { color: #4facfe; }
+
+        .case-details h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .case-details p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .case-meta span {
+            padding: 0.35rem 0.8rem;
+            font-size: 0.75rem;
+            border-radius: 50px;
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.85rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .social-links a:hover { color: var(--accent-pink); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(20px); flex-direction: column; padding: 1rem 2rem 2rem; gap: 1rem; }
+            .nav-links.open { display: flex; }
+            .case-card { grid-template-columns: 1fr; gap: 1rem; }
+            .case-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">AK.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="pm.html" class="active">PM</a></li>
+            <li><a href="insights.html">Insights</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Project <span class="gradient-text">Management</span></h1>
+        <p>How I approach planning, execution, and delivery of complex initiatives.</p>
+    </div>
+
+    <div class="pm-content">
+        <div class="pm-approach">
+            <div class="approach-card">
+                <div class="approach-icon">&#127919;</div>
+                <h3>Discovery &amp; Scoping</h3>
+                <p>Deep-dive into requirements, stakeholder mapping, and defining clear success criteria before any work begins.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon">&#128202;</div>
+                <h3>Planning &amp; Estimation</h3>
+                <p>Work breakdown structures, resource allocation, risk assessment, and realistic timeline creation.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon">&#9881;&#65039;</div>
+                <h3>Execution &amp; Monitoring</h3>
+                <p>Agile sprints, daily standups, progress tracking, and proactive issue resolution to keep things on track.</p>
+            </div>
+            <div class="approach-card">
+                <div class="approach-icon">&#127941;</div>
+                <h3>Delivery &amp; Retrospective</h3>
+                <p>Smooth handoffs, stakeholder presentations, lessons learned, and continuous improvement for future projects.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Case Studies</h2>
+        <div class="case-studies">
+            <div class="case-card">
+                <span class="case-number">01</span>
+                <div class="case-details">
+                    <h3>Cross-Departmental Process Overhaul</h3>
+                    <p>Led a 6-month initiative to redesign operational workflows across three departments, reducing cycle time by 35% and improving stakeholder satisfaction scores. Managed a team of 12 and coordinated with senior leadership throughout.</p>
+                    <div class="case-meta">
+                        <span>Stakeholder Management</span>
+                        <span>Process Design</span>
+                        <span>Change Management</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card">
+                <span class="case-number">02</span>
+                <div class="case-details">
+                    <h3>Product Launch Coordination</h3>
+                    <p>Coordinated the end-to-end launch of a new product feature involving engineering, design, marketing, and customer success teams. Delivered on schedule with zero critical defects in the first 30 days post-launch.</p>
+                    <div class="case-meta">
+                        <span>Agile / Scrum</span>
+                        <span>Risk Mitigation</span>
+                        <span>Cross-functional</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card">
+                <span class="case-number">03</span>
+                <div class="case-details">
+                    <h3>Data Migration &amp; System Integration</h3>
+                    <p>Managed a complex data migration from a legacy system to a modern cloud platform. Created detailed WBS, maintained a risk register, and ensured zero data loss during the transition period.</p>
+                    <div class="case-meta">
+                        <span>WBS</span>
+                        <span>Risk Register</span>
+                        <span>Technical PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="mailto:ankit.kumar@fixify.com">Email</a>
+        </div>
+        <p>&copy; 2026 Ankit Kumar. All rights reserved.</p>
+    </footer>
+</body>
+</html>

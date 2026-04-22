@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Ankit Kumar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --accent-purple: #764ba2;
+            --accent-pink: #f5576c;
+            --accent-blue: #4facfe;
+            --accent-cyan: #00f2fe;
+            --bg-dark: #0f0f1a;
+            --bg-card: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c8;
+            --text-muted: #6c6c8a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(15, 15, 26, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: var(--gradient-2); border-radius: 2px; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-primary); transition: 0.3s; }
+
+        .page-header { padding: 8rem 2rem 4rem; text-align: center; position: relative; }
+        .page-header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 0%, rgba(250, 112, 154, 0.1) 0%, transparent 60%); }
+        .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; position: relative; }
+        .page-header h1 .gradient-text { background: var(--gradient-4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-header p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem; position: relative; }
+
+        .insights-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .insight-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .insight-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            opacity: 0.03;
+        }
+
+        .insight-card:nth-child(1)::after { background: #667eea; }
+        .insight-card:nth-child(2)::after { background: #f5576c; }
+        .insight-card:nth-child(3)::after { background: #4facfe; }
+        .insight-card:nth-child(4)::after { background: #fa709a; }
+
+        .insight-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .insight-card:nth-child(1) .insight-category { background: rgba(102, 126, 234, 0.15); color: #667eea; }
+        .insight-card:nth-child(2) .insight-category { background: rgba(245, 87, 108, 0.15); color: #f5576c; }
+        .insight-card:nth-child(3) .insight-category { background: rgba(79, 172, 254, 0.15); color: #4facfe; }
+        .insight-card:nth-child(4) .insight-category { background: rgba(250, 112, 154, 0.15); color: #fa709a; }
+
+        .insight-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .insight-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .insight-date {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+        }
+
+        footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.85rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .social-links a:hover { color: var(--accent-pink); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(15, 15, 26, 0.95); backdrop-filter: blur(20px); flex-direction: column; padding: 1rem 2rem 2rem; gap: 1rem; }
+            .nav-links.open { display: flex; }
+            .insight-card { padding: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">AK.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="pm.html">PM</a></li>
+            <li><a href="insights.html" class="active">Insights</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>My <span class="gradient-text">Insights</span></h1>
+        <p>Thoughts, lessons, and perspectives from my professional journey.</p>
+    </div>
+
+    <div class="insights-grid">
+        <article class="insight-card">
+            <span class="insight-category">Leadership</span>
+            <h3>Why the Best Leaders Ask More Questions Than They Answer</h3>
+            <p>Reflecting on how a shift from directive leadership to inquiry-driven management transformed team dynamics and project outcomes. The power of curiosity in building trust and surfacing better ideas.</p>
+            <span class="insight-date">March 2026</span>
+        </article>
+
+        <article class="insight-card">
+            <span class="insight-category">Strategy</span>
+            <h3>Navigating Ambiguity: A Framework for Decision-Making Under Uncertainty</h3>
+            <p>In complex projects, perfect information rarely exists. Here's the mental model I use to make confident decisions when the path forward isn't clear, and how it's served me across different roles.</p>
+            <span class="insight-date">January 2026</span>
+        </article>
+
+        <article class="insight-card">
+            <span class="insight-category">Productivity</span>
+            <h3>The Myth of Multitasking and What Actually Works</h3>
+            <p>After years of juggling multiple projects, I discovered that deep focus on one thing at a time consistently outperforms scattered attention. Practical strategies for reclaiming your focus in a noisy world.</p>
+            <span class="insight-date">November 2025</span>
+        </article>
+
+        <article class="insight-card">
+            <span class="insight-category">Career</span>
+            <h3>Lessons from Switching Industries: What Transfers and What Doesn't</h3>
+            <p>Moving between industries taught me which skills are truly portable and which assumptions I needed to unlearn. A candid look at the challenges and unexpected advantages of being a generalist.</p>
+            <span class="insight-date">September 2025</span>
+        </article>
+    </div>
+
+    <div class="cta-section">
+        <p>Enjoyed these insights? I'd love to hear your thoughts or discuss ideas further.</p>
+        <a href="contact.html" class="btn">Let's Connect &rarr;</a>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="mailto:ankit.kumar@fixify.com">Email</a>
+        </div>
+        <p>&copy; 2026 Ankit Kumar. All rights reserved.</p>
+    </footer>
+</body>
+</html>
