@@ -48,19 +48,32 @@
                 radial-gradient(circle at 50% 90%, rgba(255, 0, 150, 0.06), transparent 55%);
             pointer-events: none; transform: translateZ(0); 
         }
+        /* --- HIGH-PERFORMANCE INTERACTIVITY --- */
+/* Makes buttons, links, and cards smoothly react to the mouse */
+.interactive {
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                text-shadow 0.3s ease;
+}
 
-        /* --- CUSTOM CURSOR --- */
-        .cursor-dot, .cursor-outline { 
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); 
-            border-radius: 50%; z-index: 9999; pointer-events: none; will-change: transform; 
-        }
-        .cursor-dot { width: 4px; height: 4px; background-color: var(--accent-gold); } 
-        .cursor-outline { 
-            width: 32px; height: 32px; border: 1px solid rgba(255, 0, 234, 0.5); 
-            transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out; 
-        } 
-        .cursor-outline.hover-active { width: 48px; height: 48px; background-color: var(--accent-glow); border-color: transparent; }
-        @media (max-width: 768px) { body { cursor: auto; } .cursor-dot, .cursor-outline { display: none !important; } }
+/* Subtle lift and neon glow for text links */
+a.interactive:hover, .nav-links a:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Deeper lift and shadow for cards/panels */
+.glass-panel.interactive:hover, .fp-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 
+                0 0 20px rgba(255, 0, 234, 0.15);
+    border-color: rgba(255, 0, 234, 0.3);
+}
+
+/* Push down slightly when clicked for a tactile feel */
+.interactive:active {
+    transform: translateY(1px);
+}
 
         /* --- REUSABLE GLASS PANEL CLASS --- */
         .glass-panel {
@@ -234,9 +247,7 @@
 <body>
 
     <div class="bg-mesh"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-
+    
     <header class="site-header">
         <a href="index.html" class="brand-name interactive">ACHAL TYAGI</a>
         <nav class="nav-links">
@@ -441,43 +452,5 @@
         </div>
     </footer>
 
-    <script>
-        // Custom Cursor Logic
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
-        let isMoving = false;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; 
-            mouseY = e.clientY;
-            if (!isMoving) {
-                isMoving = true;
-                requestAnimationFrame(() => {
-                    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-                    isMoving = false;
-                });
-            }
-        }, { passive: true });
-
-        function animateCursor() {
-            outlineX += (mouseX - outlineX) * 0.15; 
-            outlineY += (mouseY - outlineY) * 0.15;
-            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        document.body.addEventListener('mouseover', (e) => {
-            if(e.target.closest('.interactive, a, button, .fp-card, .testimonial-card, .sleek-marquee-container, .hero-image-wrapper')) {
-                cursorOutline.classList.add('hover-active');
-            }
-        });
-        document.body.addEventListener('mouseout', (e) => {
-            if(e.target.closest('.interactive, a, button, .fp-card, .testimonial-card, .sleek-marquee-container, .hero-image-wrapper')) {
-                cursorOutline.classList.remove('hover-active');
-            }
-        });
-    </script>
 </body>
 </html>
