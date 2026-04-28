@@ -4,195 +4,759 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work | Achal Tyagi</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
+        /* =========================================
+           NEON PULSE THEME SECTION & VARIABLES
+           ========================================= */
         :root {
-            --navy: #e2e8f4; --navy-light: #c8d0e0;
-            --blue: #6b8fff; --blue-soft: rgba(107, 143, 255, 0.1); --blue-border: rgba(107, 143, 255, 0.25);
-            --teal: #2dd4bf; --teal-soft: rgba(45, 212, 191, 0.1); --teal-border: rgba(45, 212, 191, 0.25);
-            --violet: #a78bfa; --violet-soft: rgba(167, 139, 250, 0.1); --violet-border: rgba(167, 139, 250, 0.25);
-            --coral: #fb7185; --coral-soft: rgba(251, 113, 133, 0.1); --coral-border: rgba(251, 113, 133, 0.25);
-            --bg: #0b0f1a; --bg-white: #111827; --border: #1e2a3a;
-            --text-dark: #e2e8f4; --text-body: #94a3b8; --text-muted: #4f6272;
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.4); --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
-            --radius: 12px;
+            /* Deep, almost solid black base */
+            --bg-base: #121212; 
+            
+            /* Glass Card Styles - Sleek Dark Grey */
+            --glass-bg: rgba(30, 30, 30, 0.4);
+            --glass-hover: rgba(45, 45, 45, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            
+            /* Typography */
+            --text-main: #ffffff; 
+            --text-muted: #a8a8a8; 
+            --text-meta: #777777;
+            
+            /* Neon Accent - Vibrant Magenta/Pink */
+            --accent-gold: #ff00ea; 
+            --accent-glow: rgba(255, 0, 234, 0.25);
+            
+            --nav-height: 75px; 
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0b0f1a 0%, #0f1623 40%, #10141f 70%, #0b0f1a 100%); background-attachment: fixed; color: var(--text-body); -webkit-font-smoothing: antialiased; position: relative; }
-        body::before { content: ''; position: fixed; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(107, 143, 255, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
-        body::after { content: ''; position: fixed; bottom: -15%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
 
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 0 3rem; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 15, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 42, 58, 0.8); }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); text-decoration: none; letter-spacing: -0.5px; }
-        .logo span { color: var(--blue); }
-        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-dark); }
-        .nav-links a.active { color: var(--blue); font-weight: 600; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 22px; height: 1.5px; background: var(--navy); transition: 0.3s; }
-
-        .page-header { padding: 10rem 3rem 4rem; max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
-        .section-label::before { content: ''; width: 28px; height: 2px; background: var(--teal); }
-        .page-header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 4vw, 3rem); color: var(--navy); font-weight: 400; letter-spacing: -0.5px; }
-        .page-header h1 .accent { color: var(--blue); }
-        .page-header p.subtitle { color: var(--text-body); font-size: 1.05rem; margin-top: 0.75rem; line-height: 1.7; max-width: 560px; }
-
-        .content { max-width: 1200px; margin: 0 auto; padding: 0 3rem 5rem; }
-
-        .projects-list { display: flex; flex-direction: column; gap: 1.5rem; }
-
-        .project-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            overflow: hidden;
-            transition: all 0.25s;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            cursor: none; 
         }
 
-        .project-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-            border-color: transparent;
+        /* =========================================
+           PERFORMANCE-OPTIMIZED BACKGROUND
+           ========================================= */
+        .bg-mesh {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 15% 40%, rgba(255, 0, 234, 0.08), transparent 45%),
+                radial-gradient(circle at 85% 20%, rgba(100, 0, 255, 0.05), transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(255, 0, 150, 0.06), transparent 55%);
+            pointer-events: none;
+            transform: translateZ(0); 
         }
 
-        .project-accent {
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline { 
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); 
+            border-radius: 50%; z-index: 9999; pointer-events: none; 
+            will-change: transform; 
+        }
+        .cursor-dot { width: 4px; height: 4px; background-color: var(--accent-gold); } 
+        .cursor-outline { 
+            width: 32px; height: 32px; border: 1px solid rgba(255, 0, 234, 0.5); 
+            transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out; 
+        } 
+        .cursor-outline.hover-active { 
+            width: 48px; height: 48px; background-color: var(--accent-glow); border-color: transparent; 
+        }
+        @media (max-width: 768px) { body { cursor: auto; } .cursor-dot, .cursor-outline { display: none !important; } }
+
+        /* --- REUSABLE GLASS PANEL CLASS --- */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-highlight);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transform: translateZ(0); 
+        }
+
+        /* --- SHARED HEADER --- */
+        .site-header {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            transform: translateZ(0);
+        }
+        .brand-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-decoration: none; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; text-transform: uppercase;}
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.active { color: var(--accent-gold); text-shadow: 0 0 10px var(--accent-glow); }
+
+        /* --- QUICK CONTACT BAR --- */
+        .quick-contact-bar {
+            max-width: 1300px;
+            width: 92%;
+            margin: calc(var(--nav-height) + 2rem) auto -1rem; 
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+            gap: 1.5rem;
+            border-radius: 8px;
+            background: rgba(25, 25, 25, 0.2); 
+            z-index: 10;
+            position: relative;
+        }
+        .quick-contact-bar a {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-family: 'DM Serif Display', serif;
-            font-size: 2rem;
-            color: white;
-            font-weight: 400;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .quick-contact-bar a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+        .quick-contact-bar svg { width: 14px; height: 14px; }
+        .quick-contact-bar .divider { color: var(--glass-border); }
+        
+        @media (max-width: 768px) {
+            .quick-contact-bar { justify-content: center; } 
         }
 
-        .project-card:nth-child(1) .project-accent { background: var(--blue); }
-        .project-card:nth-child(2) .project-accent { background: var(--teal); }
-        .project-card:nth-child(3) .project-accent { background: var(--violet); }
-        .project-card:nth-child(4) .project-accent { background: var(--coral); }
+        /* --- LAYOUT WRAPPER --- */
+        .container { 
+            max-width: 1300px; 
+            width: 92%; 
+            margin: 0 auto; 
+            padding: 2rem 0 4rem; 
+        }
 
-        .project-body { padding: 2rem 2.5rem; }
-        .project-body h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
-        .project-body p { font-size: 0.9rem; line-height: 1.8; color: var(--text-body); margin-bottom: 1rem; }
+        /* --- HERO SECTION --- */
+        .hero { margin-bottom: 4rem; max-width: 100%; padding: 2.5rem 3rem; position: relative; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; top: -50px; left: -50px; width: 200px; height: 200px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%); border-radius: 50%; pointer-events: none;
+        }
+        .hero h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 1px; margin-bottom: 1.2rem; color: var(--text-main); }
+        .hero p { font-size: 0.95rem; color: var(--text-muted); font-weight: 300; line-height: 1.8; max-width: 800px; }
 
-        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .project-card:nth-child(1) .project-tags span { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-border); }
-        .project-card:nth-child(2) .project-tags span { background: var(--teal-soft); color: var(--teal); border: 1px solid var(--teal-border); }
-        .project-card:nth-child(3) .project-tags span { background: var(--violet-soft); color: var(--violet); border: 1px solid var(--violet-border); }
-        .project-card:nth-child(4) .project-tags span { background: var(--coral-soft); color: var(--coral); border: 1px solid var(--coral-border); }
-        .project-tags span { padding: 0.3rem 0.7rem; font-size: 0.75rem; border-radius: 5px; font-weight: 500; }
+        /* --- METRICS STRIP --- */
+        .metrics-strip {
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            margin-bottom: 4rem; padding: 2rem 3rem;
+        }
+        .metric-block { display: flex; flex-direction: column; gap: 0.4rem; border-right: 1px solid var(--glass-border); padding-left: 2.5rem; }
+        .metric-block:first-child { padding-left: 0; }
+        .metric-block:last-child { border-right: none; }
+        .metric-num { font-size: 1.8rem; font-weight: 400; color: var(--accent-gold); line-height: 1; text-shadow: 0 0 15px var(--accent-glow); }
+        .metric-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-meta); font-weight: 500; margin-top: 0.2rem; }
 
-        .divider { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
-        .divider hr { border: none; height: 1px; background: var(--border); }
-        footer { padding: 3rem 3rem; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
-        .social-links { display: flex; gap: 2rem; }
-        .social-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-        .social-links a:hover { color: var(--blue); }
+        /* =========================================
+           SECTOR FILTERS
+           ========================================= */
+        .filter-container { margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+        .filter-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-meta); font-weight: 600; }
+        .filter-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .filter-btn { 
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); color: var(--text-muted); 
+            padding: 0.4rem 1.2rem; border-radius: 30px; font-family: inherit; 
+            font-size: 0.7rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(4px);
+            transform: translateZ(0);
+        }
+        .filter-btn:hover { border-color: rgba(255, 255, 255, 0.2); color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
+        .filter-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: var(--accent-glow); box-shadow: 0 0 15px var(--accent-glow); }
 
-        @media (max-width: 768px) {
-            nav { padding: 0 1.5rem; }
-            .hamburger { display: flex; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(11, 15, 26, 0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); }
-            .nav-links.open { display: flex; }
-            .page-header { padding: 8rem 1.5rem 3rem; }
-            .content { padding: 0 1.5rem 3rem; }
-            .project-card { grid-template-columns: 1fr; }
-            .project-accent { height: 60px; }
-            footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+        /* =========================================
+           PROJECT CARDS / ACCORDION
+           ========================================= */
+        .projects-wrapper { display: flex; flex-direction: column; gap: 1.5rem; }
+        
+        .project-card { transition: background 0.3s ease, border-color 0.3s ease; overflow: hidden; }
+        .project-card:hover { background: var(--glass-hover); border-color: rgba(255, 255, 255, 0.15); }
+        .project-card.hidden { display: none; }
+
+        /* Card Header */
+        .card-header {
+            display: grid; grid-template-columns: 100px 1fr 40px; align-items: flex-start; gap: 2rem;
+            padding: 2.5rem 3rem; cursor: pointer; position: relative;
+        }
+        .card-date { font-size: 0.75rem; color: var(--text-meta); letter-spacing: 1px; font-weight: 500; padding-top: 0.2rem;}
+        
+        .card-title-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .card-category { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-gold); font-weight: 600; }
+        .card-title { font-size: 1.3rem; font-weight: 400; color: var(--text-main); letter-spacing: 0.5px; }
+        .card-brief { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; max-width: 900px; margin-top: 0.3rem; }
+        
+        .card-icon { 
+            color: var(--text-meta); transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), color 0.3s ease; 
+            width: 36px; height: 36px; border: 1px solid var(--glass-border); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02);
+            margin-top: 0.5rem;
+        }
+        
+        .project-card.active { border-color: rgba(255, 255, 255, 0.2); background: var(--glass-hover); }
+        .project-card.active .card-icon { transform: rotate(180deg); color: var(--accent-gold); border-color: var(--accent-gold); background: var(--accent-glow); }
+
+        /* Card Content */
+        .card-body { 
+            display: grid; grid-template-rows: 0fr; 
+            transition: grid-template-rows 0.5s cubic-bezier(0.19, 1, 0.22, 1); 
+        }
+        .project-card.active .card-body { grid-template-rows: 1fr; }
+        .card-body-inner { overflow: hidden; padding: 0 3rem; }
+        
+        .card-details-grid {
+            display: grid; grid-template-columns: 1fr 3fr; gap: 4rem;
+            padding: 2.5rem 0 3.5rem; border-top: 1px dashed var(--glass-border); margin-top: 0.5rem;
+        }
+        
+        /* Left Meta Column */
+        .meta-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .meta-item { font-size: 0.85rem; color: var(--text-main); }
+        .meta-item strong { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-meta); margin-bottom: 0.4rem; }
+        .tags-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .tag { font-size: 0.7rem; padding: 0.3rem 0.8rem; border: 1px solid var(--glass-border); border-radius: 4px; color: var(--text-muted); background: rgba(255,255,255,0.02); letter-spacing: 0.5px; }
+
+        /* Right Content Column */
+        .desc-col h4 { font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); margin-bottom: 1rem; }
+        .desc-col p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; max-width: 850px; }
+        .desc-col ul { list-style: none; margin-bottom: 2rem; max-width: 850px; }
+        .desc-col li { position: relative; padding-left: 1.2rem; margin-bottom: 0.8rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+        .desc-col li::before { content: "—"; position: absolute; left: 0; color: var(--accent-gold); font-size: 0.8rem; }
+        
+        /* Buttons & Media */
+        .action-area { margin-top: 2rem; }
+        .doc-btn { 
+            display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 0, 234, 0.05); 
+            color: var(--accent-gold); padding: 0.7rem 1.4rem; border-radius: 6px; font-size: 0.75rem; font-weight: 500; 
+            border: 1px solid rgba(255, 0, 234, 0.3); text-decoration: none; transition: all 0.3s ease; letter-spacing: 0.5px;
+        }
+        .doc-btn:hover { background: var(--accent-gold); color: var(--bg-base); box-shadow: 0 0 15px var(--accent-glow); }
+        .media-preview { width: 100%; max-width: 550px; border-radius: 8px; border: 1px solid var(--glass-border); display: block; margin-top: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        /* --- INTERNSHIP SECTION --- */
+        .section-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 5rem 0 2rem; color: var(--text-main); display: flex; align-items: center; gap: 1.5rem; }
+        .section-title::after { content: ""; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--glass-border), transparent); }
+
+        /* --- MULTI-COLUMN FOOTER --- */
+        .site-footer { 
+            border-top: 1px solid var(--glass-border); 
+            padding: 4rem 5% 3rem; 
+            margin-top: 5rem; 
+            background: rgba(18, 18, 18, 0.8); 
+            backdrop-filter: blur(10px); 
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-left { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-left .brand-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; }
+        .footer-copyright { font-size: 0.75rem; color: var(--text-meta); letter-spacing: 1px; }
+        .footer-right { display: flex; gap: 5rem; }
+        .footer-col { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-heading { font-size: 0.75rem; color: var(--text-main); letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        .footer-nav { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; width: fit-content; }
+        .footer-nav a:hover { color: var(--accent-gold); }
+
+        /* --- RESPONSIVE QUERIES --- */
+        @media (max-width: 900px) {
+            .hero, .metrics-strip, .card-header { padding: 2rem; }
+            .card-header { grid-template-columns: 1fr 40px; gap: 1rem; }
+            .card-date { display: none; } 
+            .card-body-inner { padding: 0 2rem; }
+            .card-details-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem 0; }
+            .metrics-strip { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .metric-block { border-right: none; padding-left: 0; padding-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); }
+            
+            /* Footer responsive */
+            .site-footer { flex-direction: column; gap: 3rem; }
+            .footer-right { flex-direction: column; gap: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">Achal <span>Tyagi</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="work.html" class="active">Work</a></li>
-            <li><a href="pm.html">PM</a></li>
-            <li><a href="insights.html">Insights</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
 
-    <div class="page-header">
-        <p class="section-label">Work</p>
-        <h1>Selected <span class="accent">projects</span></h1>
-        <p class="subtitle">A collection of projects and initiatives I've contributed to across different roles and domains.</p>
+    <div class="bg-mesh"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <header class="site-header">
+        <a href="home.html" class="brand-name interactive">ACHAL TYAGI</a>
+        <nav class="nav-links">
+            <a href="home.html" class="interactive">Home</a>
+            <a href="about.html" class="interactive">About</a>
+            <a href="work.html" class="interactive active">Work</a>
+            <a href="interests.html" class="interactive">Interests</a>
+            <a href="contact.html" class="interactive">Contact</a>
+        </nav>
+    </header>
+
+    <div class="quick-contact-bar glass-panel interactive">
+        <a href="mailto:achaltyagi02@gmail.com" class="interactive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            achaltyagi02@gmail.com
+        </a>
+        <span class="divider">|</span>
+        <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn
+        </a>
     </div>
 
-    <div class="content">
-        <div class="projects-list">
-            <div class="project-card">
-                <div class="project-accent">01</div>
-                <div class="project-body">
-                    <h3>Project Alpha</h3>
-                    <p>A comprehensive platform designed to streamline operations and improve team collaboration across departments. Led the initiative from concept to delivery, resulting in measurable efficiency gains.</p>
-                    <div class="project-tags">
-                        <span>Strategy</span>
-                        <span>Leadership</span>
-                        <span>Analytics</span>
-                    </div>
-                </div>
-            </div>
+    <main class="container">
 
-            <div class="project-card">
-                <div class="project-accent">02</div>
-                <div class="project-body">
-                    <h3>Project Beta</h3>
-                    <p>Developed an innovative solution addressing key customer pain points, resulting in significant improvements in user satisfaction and engagement metrics across the platform.</p>
-                    <div class="project-tags">
-                        <span>Product</span>
-                        <span>UX Research</span>
-                        <span>Development</span>
-                    </div>
-                </div>
-            </div>
+        <section class="hero glass-panel">
+            <h1>ALL WORK</h1>
+            <p>A selected body of consulting, strategy, and research work spanning market entry, partnerships, organisational behaviour, operational improvement, and brand-led growth.</p>
+        </section>
 
-            <div class="project-card">
-                <div class="project-accent">03</div>
-                <div class="project-body">
-                    <h3>Project Gamma</h3>
-                    <p>A data-driven initiative focused on identifying market opportunities and building strategic recommendations for stakeholders across the organization.</p>
-                    <div class="project-tags">
-                        <span>Data Analysis</span>
-                        <span>Research</span>
-                        <span>Presentation</span>
-                    </div>
-                </div>
+        <section class="metrics-strip glass-panel">
+            <div class="metric-block">
+                <span class="metric-num">6</span>
+                <span class="metric-label">Major Projects</span>
             </div>
+            <div class="metric-block">
+                <span class="metric-num">5+</span>
+                <span class="metric-label">Sectors Covered</span>
+            </div>
+            <div class="metric-block">
+                <span class="metric-num">B2B</span>
+                <span class="metric-label">Corporate Pitching</span>
+            </div>
+            <div class="metric-block">
+                <span class="metric-num">3</span>
+                <span class="metric-label">Live Client Engagements</span>
+            </div>
+        </section>
 
-            <div class="project-card">
-                <div class="project-accent">04</div>
-                <div class="project-body">
-                    <h3>Project Delta</h3>
-                    <p>Managed cross-functional teams to deliver a complex project on time and under budget, involving multiple stakeholders and navigating tight deadlines with clarity.</p>
-                    <div class="project-tags">
-                        <span>Project Management</span>
-                        <span>Agile</span>
-                        <span>Delivery</span>
+        <section class="filter-container">
+            <span class="filter-label">Filter:</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active interactive" data-filter="All">All</button>
+                <button class="filter-btn interactive" data-filter="International Strategy">International Strategy</button>
+                <button class="filter-btn interactive" data-filter="Organisational Behaviour">Organisational Behaviour</button>
+                <button class="filter-btn interactive" data-filter="Marketing & Sponsorship">Marketing & Sponsorship</button>
+                <button class="filter-btn interactive" data-filter="Corporate Strategy">Corporate Strategy</button>
+                <button class="filter-btn interactive" data-filter="Operations & Governance">Operations & Governance</button>
+                <button class="filter-btn interactive" data-filter="Research">Research</button>
+            </div>
+        </section>
+
+        <section class="projects-wrapper">
+            
+            <article class="project-card glass-panel interactive" data-sector="International Strategy">
+                <div class="card-header">
+                    <span class="card-date">SEP '25</span>
+                    <div class="card-title-group">
+                        <span class="card-category">International Strategy</span>
+                        <h3 class="card-title">Market Entry Strategy: Blynk Drinks</h3>
+                        <p class="card-brief">Advised the CEO of a functional beverage startup on a data-driven market entry strategy, analyzing 3 distinct international regions and delivering a prioritized go-to-market growth roadmap.</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-inner">
+                        <div class="card-details-grid">
+                            <div class="meta-list">
+                                <div class="meta-item"><strong>Client</strong> Blynk</div>
+                                <div class="meta-item"><strong>Sector</strong> FMCG / Beverages</div>
+                                <div class="meta-item"><strong>Module</strong> Consulting Project</div>
+                                <div class="tags-wrap">
+                                    <span class="tag">GTM Strategy</span>
+                                    <span class="tag">Market Entry</span>
+                                    <span class="tag">Benchmarking</span>
+                                </div>
+                            </div>
+                            <div class="desc-col">
+                                <h4>Project Overview</h4>
+                                <p>Tasked with driving global growth for an Irish "beverages with benefits" startup, our consulting team collaborated directly with CEO David Hartigan to architect a comprehensive international expansion roadmap.</p>
+                                <ul>
+                                    <li>Conducted competitor benchmarking and distributor evaluations across the UAE, KSA, and the Nordic region.</li>
+                                    <li>Leveraged PESTEL and Blue Ocean Strategy to identify high-value market gaps.</li>
+                                    <li>Synthesized complex regional data into a cohesive growth roadmap utilizing the MoSCoW prioritization method.</li>
+                                </ul>
+                                <div class="action-area">
+                                    <a href="assets/docs/Blynk Market Entry Strategy - CC Group_1.pdf" target="_blank" class="doc-btn interactive">View Supporting Document</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card glass-panel interactive" data-sector="Organisational Behaviour">
+                <div class="card-header">
+                    <span class="card-date">OCT '25</span>
+                    <div class="card-title-group">
+                        <span class="card-category">Change Management</span>
+                        <h3 class="card-title">Ecomm Edge Motivation & Change Diagnostic</h3>
+                        <p class="card-brief">Diagnosed the root cause of a 57% drop in closing rates at an Indian D2C accelerator following an organizational restructure using the Job Demands-Resources model.</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-inner">
+                        <div class="card-details-grid">
+                            <div class="meta-list">
+                                <div class="meta-item"><strong>Client</strong> Ecomm Edge India</div>
+                                <div class="meta-item"><strong>Sector</strong> D2C / E-Commerce</div>
+                                <div class="meta-item"><strong>Module</strong> Organisational Behaviour</div>
+                                <div class="tags-wrap">
+                                    <span class="tag">JD-R Model</span>
+                                    <span class="tag">Burnout Diagnosis</span>
+                                </div>
+                            </div>
+                            <div class="desc-col">
+                                <h4>Project Overview</h4>
+                                <p>Following a structural change that removed pre-qualifier roles, Ecomm Edge saw average closing rates drop from 32% to 14%. This engagement diagnosed why using structured OB frameworks and primary research.</p>
+                                <ul>
+                                    <li>Identified role expansion without resource rebalancing as the core issue (3x workload increase).</li>
+                                    <li>Extracted wellbeing insights showing workload at 90%, autonomy at 40%, and role clarity at 30%.</li>
+                                    <li>Proposed an AI chatbot for pre-qualification and a Living Playbook for standardised processes.</li>
+                                </ul>
+                                <div class="action-area">
+                                    <a href="assets/docs/Motivation___Change_at_Ecomm_Edge.pdf" target="_blank" class="doc-btn interactive">View Diagnostic Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card glass-panel interactive" data-sector="Marketing & Sponsorship">
+                <div class="card-header">
+                    <span class="card-date">JUN '22</span>
+                    <div class="card-title-group">
+                        <span class="card-category">Marketing & Sponsorship</span>
+                        <h3 class="card-title">Red Bull Sponsored Tournament & Product Campaign</h3>
+                        <p class="card-brief">Secured 100% event funding through a successful corporate pitch to Red Bull, orchestrating a tournament while developing a full-scale product marketing campaign.</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-inner">
+                        <div class="card-details-grid">
+                            <div class="meta-list">
+                                <div class="meta-item"><strong>Partner</strong> Red Bull</div>
+                                <div class="meta-item"><strong>Sector</strong> Events / FMCG</div>
+                                <div class="tags-wrap">
+                                    <span class="tag">B2B Pitching</span>
+                                    <span class="tag">Budgeting</span>
+                                </div>
+                            </div>
+                            <div class="desc-col">
+                                <h4>Project Overview</h4>
+                                <p>Led end-to-end event management of a collegiate tournament and drove B2B outreach to secure high-profile corporate backing, taking ownership of commercial budgeting and market research.</p>
+                                <ul>
+                                    <li>Pitched a comprehensive B2B business proposal directly to Red Bull, securing full logistical sponsorship.</li>
+                                    <li>Directed the organisation of an event with 16 teams and 150+ attendees.</li>
+                                    <li>Led commercial budgeting and conducted market research to build targeted consumer profiles.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card glass-panel interactive" data-sector="Research">
+                <div class="card-header">
+                    <span class="card-date">SEP '25</span>
+                    <div class="card-title-group">
+                        <span class="card-category">Academic Research</span>
+                        <h3 class="card-title">Workplace Dynamics: Attitudes & Emotions Analysis</h3>
+                        <p class="card-brief">Conducted extensive academic research into organizational psychology frameworks, contrasting the impact of emotional labour and cognitive dissonance across corporate cultures.</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-inner">
+                        <div class="card-details-grid">
+                            <div class="meta-list">
+                                <div class="meta-item"><strong>Type</strong> Academic Research</div>
+                                <div class="meta-item"><strong>Sector</strong> HR / Psychology</div>
+                                <div class="tags-wrap">
+                                    <span class="tag">Literature Review</span>
+                                    <span class="tag">Emotional Labour</span>
+                                </div>
+                            </div>
+                            <div class="desc-col">
+                                <h4>Project Overview</h4>
+                                <p>A deep-dive academic investigation into how attitudes and emotions fundamentally drive organizational success, applying frameworks to comparative corporate examples such as Amazon and Zappos.</p>
+                                <ul>
+                                    <li>Synthesised foundational research on Emotional Contagion and Cognitive Dissonance.</li>
+                                    <li>Compared supportive and high-pressure corporate cultures.</li>
+                                    <li>Evaluated the long-term consequences of surface acting versus deep acting.</li>
+                                </ul>
+                                <div class="action-area">
+                                    <a href="assets/docs/Attitudes and Emotions_compressed.pdf" target="_blank" class="doc-btn interactive">View Research Presentation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card glass-panel interactive" data-sector="Corporate Strategy">
+                <div class="card-header">
+                    <span class="card-date">SPRING '26</span>
+                    <div class="card-title-group">
+                        <span class="card-category">Corporate Strategy</span>
+                        <h3 class="card-title">On x Garmin Strategic Alliance</h3>
+                        <p class="card-brief">Developed a comprehensive corporate strategy proposal for an alliance between On and Garmin, merging premium performance footwear with data-driven wearable technology.</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-inner">
+                        <div class="card-details-grid">
+                            <div class="meta-list">
+                                <div class="meta-item"><strong>Client</strong> Academic Case</div>
+                                <div class="meta-item"><strong>Sector</strong> Sportswear / Wearables</div>
+                                <div class="meta-item"><strong>Module</strong> Corporate Strategy</div>
+                                <div class="tags-wrap">
+                                    <span class="tag">Alliance Strategy</span>
+                                    <span class="tag">Value Chain</span>
+                                </div>
+                            </div>
+                            <div class="desc-col">
+                                <h4>Project Overview</h4>
+                                <p>Conceptualized and pitched a high-level corporate partnership designed around overlapping premium, data-conscious athlete segments to increase customer lock-in and expand market reach defensively against competitors like Apple and Nike.</p>
+                                <ul>
+                                    <li>Evaluated strategic fit and core competency alignment across both brands.</li>
+                                    <li>Proposed value-chain integration between physical footwear development and biometric tracking.</li>
+                                    <li>Built a phased rollout path from co-branded campaigns to deeper R&D collaboration.</li>
+                                </ul>
+                                <div class="action-area">
+                                    <img src="assets/images/On x Garmin.jpeg" alt="On x Garmin Strategic Synergy" class="media-preview">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card glass-panel interactive" data-sector="Operations & Governance">
+                <div class="card-header">
+                    <span class="card-date">JAN '26</span>
+                    <div class="card-title-group">
+                        <span class="card-category">Operational Risk & Governance</span>
+                        <h3 class="card-title">Operational Control & Governance Strategy: Crowe Ireland</h3>
+                        <p class="card-brief">Conducted a 12-week strategic operational review for Crowe Ireland’s consulting portfolio, delivering a 90-day implementation roadmap across document management and resource tracking.</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-inner">
+                        <div class="card-details-grid">
+                            <div class="meta-list">
+                                <div class="meta-item"><strong>Client</strong> Crowe Ireland</div>
+                                <div class="meta-item"><strong>Sector</strong> Professional Services</div>
+                                <div class="meta-item"><strong>Type</strong> Live Engagement</div>
+                                <div class="tags-wrap">
+                                    <span class="tag">Process Automation</span>
+                                    <span class="tag">RACI Framework</span>
+                                </div>
+                            </div>
+                            <div class="desc-col">
+                                <h4>Project Overview</h4>
+                                <p>Crowe Ireland engaged our consulting team to resolve critical bottlenecks in document control, resource capacity management, and internal governance across their consulting portfolio.</p>
+                                <ul>
+                                    <li>Designed a 3-pillar document management framework utilizing SharePoint and Power Automate.</li>
+                                    <li>Diagnosed resource-tracking weaknesses and proposed Microsoft Planner + Power BI integrations.</li>
+                                    <li>Built a mandatory RACI-based accountability structure across 6 organisational levels.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <h2 class="section-title">INTERNSHIP</h2>
+        <article class="project-card glass-panel interactive">
+            <div class="card-header">
+                <span class="card-date">MAY '22</span>
+                <div class="card-title-group">
+                    <span class="card-category" style="color: var(--text-main);">Marketing & Client Relations</span>
+                    <h3 class="card-title">Sanchi InfoTech</h3>
+                    <p class="card-brief">Driven business development and client acquisition for a tech firm by conducting targeted competitor analysis, directly resulting in a 10% increase in qualified leads.</p>
+                </div>
+                <div class="card-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-body-inner">
+                    <div class="card-details-grid">
+                        <div class="meta-list">
+                            <div class="meta-item"><strong>Company</strong> Sanchi InfoTech</div>
+                            <div class="meta-item"><strong>Sector</strong> IT Services</div>
+                            <div class="meta-item"><strong>Location</strong> New Delhi, India</div>
+                            <div class="tags-wrap">
+                                <span class="tag">Market Research</span>
+                                <span class="tag">Client Onboarding</span>
+                            </div>
+                        </div>
+                        <div class="desc-col">
+                            <h4>Role Overview</h4>
+                            <p>Handled core marketing research and supported B2B outreach to expand Sanchi InfoTech's regional client base.</p>
+                            <ul>
+                                <li>Executed deep-dive market research analyzing 15+ key competitors.</li>
+                                <li>Optimized outreach campaigns and managed end-to-end client onboarding workflows.</li>
+                                <li>Developed comprehensive pitch decks for executive-level client meetings.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+        </article>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <div class="brand-name interactive">ACHAL TYAGI</div>
+            <div class="footer-copyright">© 2026 Achal Tyagi · Dublin</div>
         </div>
-    </div>
+        
+        <div class="footer-right">
+            
+            <div class="footer-col">
+                <div class="footer-heading">Navigation</div>
+                <nav class="footer-nav">
+                    <a href="home.html" class="interactive">Home</a>
+                    <a href="about.html" class="interactive">About</a>
+                    <a href="work.html" class="interactive">Work</a>
+                    <a href="interests.html" class="interactive">Interests</a>
+                </nav>
+            </div>
 
-    <div class="divider"><hr></div>
-    <footer>
-        <p>&copy; 2026 Achal Tyagi</p>
-        <div class="social-links">
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="mailto:achal.tyagi@email.com">Email</a>
+            <div class="footer-col">
+                <div class="footer-heading">Connect</div>
+                <nav class="footer-nav">
+                    <a href="mailto:achaltyagi02@gmail.com" class="interactive">Email</a>
+                    <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">LinkedIn</a>
+                </nav>
+            </div>
+
         </div>
     </footer>
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+        let isMoving = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; 
+            mouseY = e.clientY;
+            if (!isMoving) {
+                isMoving = true;
+                requestAnimationFrame(() => {
+                    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+                    isMoving = false;
+                });
+            }
+        }, { passive: true });
+
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15; 
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.body.addEventListener('mouseover', (e) => {
+            if(e.target.closest('.interactive, a, button, .card-header')) {
+                cursorOutline.classList.add('hover-active');
+            }
+        });
+        document.body.addEventListener('mouseout', (e) => {
+            if(e.target.closest('.interactive, a, button, .card-header')) {
+                cursorOutline.classList.remove('hover-active');
+            }
+        });
+
+        // Accordion Logic
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            const header = card.querySelector('.card-header');
+            header.addEventListener('click', (e) => {
+                if(e.target.closest('a') || e.target.closest('button')) return;
+                const isActive = card.classList.contains('active');
+                cards.forEach(c => c.classList.remove('active'));
+                
+                if (!isActive) {
+                    card.classList.add('active');
+                    setTimeout(() => {
+                        const yOffset = -100; 
+                        const y = card.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }, 350);
+                }
+            });
+        });
+
+        // Sector Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    if(!card.hasAttribute('data-sector')) return; 
+                    
+                    card.classList.remove('active'); 
+                    
+                    if (filterValue === 'All' || card.getAttribute('data-sector') === filterValue) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -4,203 +4,477 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Achal Tyagi</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
+        /* =========================================
+           NEON PULSE THEME SECTION & VARIABLES
+           ========================================= */
         :root {
-            --navy: #e2e8f4; --navy-light: #c8d0e0;
-            --blue: #6b8fff; --blue-soft: rgba(107, 143, 255, 0.1); --blue-border: rgba(107, 143, 255, 0.25);
-            --teal: #2dd4bf; --teal-soft: rgba(45, 212, 191, 0.1); --teal-border: rgba(45, 212, 191, 0.25);
-            --violet: #a78bfa; --violet-soft: rgba(167, 139, 250, 0.1); --violet-border: rgba(167, 139, 250, 0.25);
-            --coral: #fb7185; --coral-soft: rgba(251, 113, 133, 0.1); --coral-border: rgba(251, 113, 133, 0.25);
-            --bg: #0b0f1a; --bg-white: #111827; --border: #1e2a3a;
-            --text-dark: #e2e8f4; --text-body: #94a3b8; --text-muted: #4f6272;
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.4); --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
-            --radius: 12px;
+            --bg-base: #121212; 
+            --glass-bg: rgba(30, 30, 30, 0.4);
+            --glass-hover: rgba(45, 45, 45, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff; 
+            --text-muted: #a8a8a8; 
+            --text-meta: #777777;
+            --accent-gold: #ff00ea; /* Magenta Accent */
+            --accent-glow: rgba(255, 0, 234, 0.25);
+            --nav-height: 75px; 
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0b0f1a 0%, #0f1623 40%, #10141f 70%, #0b0f1a 100%); background-attachment: fixed; color: var(--text-body); -webkit-font-smoothing: antialiased; position: relative; }
-        body::before { content: ''; position: fixed; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(107, 143, 255, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
-        body::after { content: ''; position: fixed; bottom: -15%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0%, transparent 70%); border-radius: 50%; z-index: 0; pointer-events: none; }
 
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 0 3rem; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(11, 15, 26, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(30, 42, 58, 0.8); }
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); text-decoration: none; letter-spacing: -0.5px; }
-        .logo span { color: var(--blue); }
-        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-dark); }
-        .nav-links a.active { color: var(--blue); font-weight: 600; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 22px; height: 1.5px; background: var(--navy); transition: 0.3s; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            cursor: none; 
+        }
 
-        .page-header { padding: 10rem 3rem 4rem; max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
-        .section-label::before { content: ''; width: 28px; height: 2px; background: var(--teal); }
-        .page-header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 4vw, 3rem); color: var(--navy); font-weight: 400; letter-spacing: -0.5px; }
-        .page-header h1 .accent { color: var(--blue); }
-        .page-header p.subtitle { color: var(--text-body); font-size: 1.05rem; margin-top: 0.75rem; line-height: 1.7; max-width: 560px; }
+        /* --- BACKGROUND & CURSOR --- */
+        .bg-mesh {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-image: 
+                radial-gradient(circle at 15% 40%, rgba(255, 0, 234, 0.08), transparent 45%),
+                radial-gradient(circle at 85% 20%, rgba(100, 0, 255, 0.05), transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(255, 0, 150, 0.06), transparent 55%);
+            pointer-events: none;
+        }
 
-        .content { max-width: 1200px; margin: 0 auto; padding: 0 3rem 5rem; }
+        .cursor-dot, .cursor-outline { 
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); 
+            border-radius: 50%; z-index: 9999; pointer-events: none; 
+        }
+        .cursor-dot { width: 4px; height: 4px; background-color: var(--accent-gold); } 
+        .cursor-outline { 
+            width: 32px; height: 32px; border: 1px solid rgba(255, 0, 234, 0.5); 
+            transition: width 0.2s, height 0.2s, background-color 0.2s; 
+        } 
+        .cursor-outline.hover-active { width: 48px; height: 48px; background-color: var(--accent-glow); border-color: transparent; }
+        @media (max-width: 768px) { body { cursor: auto; } .cursor-dot, .cursor-outline { display: none !important; } }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* --- REUSABLE GLASS PANEL CLASS --- */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-highlight);
+            border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- NAVIGATION --- */
+        .site-header {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000; background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-border);
+        }
+        .brand-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-decoration: none; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; text-transform: uppercase;}
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.active { color: var(--accent-gold); text-shadow: 0 0 10px var(--accent-glow); }
+
+        /* --- QUICK CONTACT BAR --- */
+        .quick-contact-bar {
+            max-width: 1300px;
+            width: 92%;
+            margin: calc(var(--nav-height) + 2rem) auto -1rem; 
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
             gap: 1.5rem;
-        }
-
-        .about-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2.5rem;
+            border-radius: 8px;
+            background: rgba(25, 25, 25, 0.2); 
+            z-index: 10;
             position: relative;
-            overflow: hidden;
         }
-
-        .about-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 4px; height: 100%;
+        .quick-contact-bar a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
-
-        .about-card:nth-child(1)::before { background: var(--blue); }
-        .about-card:nth-child(2)::before { background: var(--teal); }
-        .about-card:nth-child(3)::before { background: var(--violet); }
-        .about-card:nth-child(4)::before { background: var(--coral); }
-
-        .about-card h2 {
-            font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem;
+        .quick-contact-bar a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-2px);
         }
-
-        .about-card p { font-size: 0.95rem; line-height: 1.8; color: var(--text-body); }
-
-        /* Timeline */
-        .timeline { margin-top: 0.5rem; }
-        .timeline-item {
-            position: relative; padding-left: 1.5rem; padding-bottom: 1.8rem;
-            border-left: 1.5px solid var(--border);
-        }
-        .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -4.5px; top: 6px;
-            width: 8px; height: 8px; border-radius: 50%; background: var(--violet);
-        }
-        .timeline-item h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
-        .timeline-item .date { font-size: 0.78rem; color: var(--violet); font-weight: 500; margin-bottom: 0.4rem; }
-        .timeline-item p { font-size: 0.9rem; color: var(--text-body); line-height: 1.7; }
-
-        /* Skills */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
-        .skill-tag {
-            padding: 0.4rem 0.85rem; border-radius: 6px;
-            font-size: 0.8rem; font-weight: 500;
-        }
-        .skill-tag:nth-child(4n+1) { background: var(--blue-soft); border: 1px solid var(--blue-border); color: var(--blue); }
-        .skill-tag:nth-child(4n+2) { background: var(--teal-soft); border: 1px solid var(--teal-border); color: var(--teal); }
-        .skill-tag:nth-child(4n+3) { background: var(--violet-soft); border: 1px solid var(--violet-border); color: var(--violet); }
-        .skill-tag:nth-child(4n) { background: var(--coral-soft); border: 1px solid var(--coral-border); color: var(--coral); }
-
-        .divider { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
-        .divider hr { border: none; height: 1px; background: var(--border); }
-        footer { padding: 3rem 3rem; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
-        .social-links { display: flex; gap: 2rem; }
-        .social-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-        .social-links a:hover { color: var(--blue); }
-
+        .quick-contact-bar svg { width: 14px; height: 14px; }
+        .quick-contact-bar .divider { color: var(--glass-border); }
+        
         @media (max-width: 768px) {
-            nav { padding: 0 1.5rem; }
-            .hamburger { display: flex; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(11, 15, 26, 0.98); backdrop-filter: blur(12px); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); }
-            .nav-links.open { display: flex; }
-            .page-header { padding: 8rem 1.5rem 3rem; }
-            .content { padding: 0 1.5rem 3rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+            .quick-contact-bar { justify-content: center; } 
+        }
+
+        .container { max-width: 1300px; width: 92%; margin: 0 auto; padding: 2rem 0 4rem; }
+        .section-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 6rem 0 2rem; color: var(--text-main); display: flex; align-items: center; gap: 1.5rem; }
+        .section-title::after { content: ""; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--glass-border), transparent); }
+
+        /* --- ABOUT HERO GRID --- */
+        .about-hero { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; margin-bottom: 4rem; }
+        .profile-img-container { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 0, 234, 0.15); aspect-ratio: 3/4; background: var(--glass-hover); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; filter: brightness(0.92) contrast(1.02); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .profile-img-container:hover img { filter: brightness(1) contrast(1); transform: scale(1.02); }
+        
+        .location-badge { position: absolute; bottom: 1.5rem; left: 1.5rem; background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(8px); padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid var(--glass-border); font-size: 0.75rem; color: var(--text-muted); transition: transform 0.3s ease; z-index: 2; }
+        .profile-img-container:hover .location-badge { transform: translateY(-5px); border-color: rgba(255, 0, 234, 0.3); }
+        .location-badge strong { color: var(--accent-gold); display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.2rem;}
+
+        .about-content h1 { font-size: 2.5rem; font-weight: 400; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .about-content .tagline { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); margin-bottom: 2rem; display: block; font-weight: 600; }
+        .about-content p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+
+        /* --- ACTION BUTTONS --- */
+        .action-buttons { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+        .action-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); color: var(--text-main); padding: 0.8rem 1.5rem; border-radius: 30px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.6rem; }
+        .action-btn svg { width: 16px; height: 16px; opacity: 0.8; transition: stroke 0.3s ease; }
+        .action-btn:hover { border-color: var(--accent-gold); background: rgba(255, 0, 234, 0.05); box-shadow: 0 0 15px var(--accent-glow); color: var(--text-main); transform: translateY(-2px); }
+        .action-btn:hover svg { stroke: var(--accent-gold); opacity: 1; }
+
+        /* --- WORK EXPERIENCE LIST --- */
+        .exp-category-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); margin: 2.5rem 0 1.5rem; display: flex; align-items: center; }
+        .exp-category-title svg { margin-right: 0.8rem; width: 18px; height: 18px; opacity: 0.8; }
+        .exp-item { padding: 2.5rem; margin-bottom: 1.5rem; transition: border-color 0.3s, transform 0.3s; }
+        .exp-item:hover { border-color: rgba(255, 255, 255, 0.2); transform: translateY(-3px); }
+        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .exp-role { font-size: 1.2rem; color: var(--text-main); font-weight: 500; margin-bottom: 0.2rem; }
+        .exp-company { color: var(--accent-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .exp-date { font-size: 0.75rem; color: var(--text-meta); letter-spacing: 1px; border: 1px solid var(--glass-border); padding: 0.4rem 1rem; border-radius: 20px; background: rgba(255,255,255,0.02);}
+        .exp-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; }
+
+        /* --- SKILLS & CERTIFICATIONS GRID --- */
+        .skills-container { padding: 3rem; margin-bottom: 1.5rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .skill-category h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--glass-border); }
+        .skill-list { list-style: none; }
+        .skill-list li { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem; position: relative; padding-left: 1.2rem; line-height: 1.5; }
+        .skill-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent-gold); opacity: 0.8; }
+
+        /* Certifications */
+        .certifications-block { margin-top: 3rem; padding-top: 2rem; border-top: 1px dashed var(--glass-border); }
+        .certifications-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+        .cert-tag { background: rgba(255, 0, 234, 0.05); border: 1px solid rgba(255, 0, 234, 0.2); color: var(--text-main); padding: 0.8rem 1.5rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; display: flex; align-items: center; gap: 0.8rem; transition: all 0.3s ease; }
+        .cert-tag:hover { border-color: var(--accent-gold); box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
+
+        /* --- CTA SECTION --- */
+        .cta-section { text-align: center; padding: 8rem 0 4rem; margin-top: 4rem; border-top: 1px solid var(--glass-border); }
+        .cta-section h2 { font-size: 2.5rem; font-weight: 400; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.5px;}
+        .cta-section p { font-size: 0.95rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8;}
+        .cta-btn { display: inline-block; background: rgba(255, 0, 234, 0.05); color: var(--accent-gold); padding: 1rem 2.5rem; border-radius: 30px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(255, 0, 234, 0.3); text-decoration: none; transition: all 0.3s ease; }
+        .cta-btn:hover { background: var(--accent-gold); color: var(--bg-base); box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* --- MULTI-COLUMN FOOTER --- */
+        .site-footer { 
+            border-top: 1px solid var(--glass-border); 
+            padding: 4rem 5% 3rem; 
+            margin-top: 5rem; 
+            background: rgba(18, 18, 18, 0.8); 
+            backdrop-filter: blur(10px); 
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-left { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-left .brand-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; }
+        .footer-copyright { font-size: 0.75rem; color: var(--text-meta); letter-spacing: 1px; }
+        .footer-right { display: flex; gap: 5rem; }
+        .footer-col { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-heading { font-size: 0.75rem; color: var(--text-main); letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        .footer-nav { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; width: fit-content; }
+        .footer-nav a:hover { color: var(--accent-gold); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .about-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+            .profile-img-container { max-width: 400px; margin: 0 auto; }
+            .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .site-footer { flex-direction: column; gap: 3rem; }
+            .footer-right { flex-direction: column; gap: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">Achal <span>Tyagi</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="work.html">Work</a></li>
-            <li><a href="pm.html">PM</a></li>
-            <li><a href="insights.html">Insights</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
 
-    <div class="page-header">
-        <p class="section-label">About</p>
-        <h1>A bit about <span class="accent">me</span></h1>
-        <p class="subtitle">Who I am, where I've been, and what drives me forward.</p>
+    <div class="bg-mesh"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <header class="site-header">
+        <a href="home.html" class="brand-name interactive">ACHAL TYAGI</a>
+        <nav class="nav-links">
+            <a href="home.html" class="interactive">Home</a>
+            <a href="about.html" class="interactive active">About</a>
+            <a href="work.html" class="interactive">Work</a>
+            <a href="interests.html" class="interactive">Interests</a>
+            <a href="contact.html" class="interactive">Contact</a>
+        </nav>
+    </header>
+
+    <div class="quick-contact-bar glass-panel interactive">
+        <a href="mailto:achaltyagi02@gmail.com" class="interactive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            achaltyagi02@gmail.com
+        </a>
+        <span class="divider">|</span>
+        <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn
+        </a>
     </div>
 
-    <div class="content">
-        <div class="about-grid">
-            <div class="about-card">
-                <h2>Background</h2>
-                <p>I'm Achal Tyagi, a versatile professional who enjoys working at the intersection of technology, strategy, and people. Whether it's building software, managing a project, or solving a tricky business problem, I bring curiosity and a drive for impact to everything I do.</p>
+    <main class="container">
+
+        <section class="about-hero">
+            <div class="profile-img-container interactive">
+                <img src="assets/images/Achal_Tyagi.jpeg" alt="Achal Tyagi">
+                <div class="location-badge">
+                    <strong>Based In</strong>
+                    Dublin, Ireland — From New Delhi
+                </div>
             </div>
-            <div class="about-card">
-                <h2>Philosophy</h2>
-                <p>I believe the best work happens when you combine deep technical understanding with strong communication and empathy. Outside of work, I enjoy exploring new ideas, reading, and connecting with interesting people from diverse backgrounds.</p>
+            <div class="about-content">
+                <span class="tagline">Management Consultant in Training</span>
+                <h1>Achal Tyagi</h1>
+                <p>I am currently an MSc Management Consultancy student at UCD Michael Smurfit Graduate Business School. My professional focus sits at the intersection of rigorous analytical thought and real-world implementation, ranging from defining global market entry strategies for start-ups to optimizing operational efficiency and client engagement for established firms.</p>
+                
+                <p>I earned my Bachelor of Commerce (Hons.) at Vivekananda Institute of Professional Studies, India with a CGPA of 8.42 (First Division). During my time there and my subsequent role as a Financial Analyst, I discovered a passion for identifying performance gaps and translating complex data into actionable business objectives. Beyond academics, organizing a 150-person collegiate football tournament and successfully pitching a full-funding sponsorship proposal to Red Bull taught me the value of collaborative communication and commercial awareness. These formative experiences pulled me firmly towards a career in consulting.</p>
+                
+                <p>Consulting chose me as much as I chose it. The pivot point was when i applied Lean Six Sigma principles to untangle complex operational bottlenecks, it showed me that data is only as good as the strategy it informs. Seeing a 15% improvement in efficiency from a single workflow redesign proved that structured, dedicated support is the most direct way to amplify a company’s impact. This insight, that good strategy builds lasting value has stayed with me through every project since, from conducting deep-dive competitor benchmarking to architecting market entry roadmaps. For me, consulting is about that specific moment of clarity: when a messy operational challenge is translated into a streamlined, high-growth objective.</p>
+                
+                <div class="action-buttons">
+                    <a href="work.html" class="action-btn interactive">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        View My Work
+                    </a>
+                    <a href="assets/Achal_Tyagi_CV.pdf" download="Achal_Tyagi_CV.pdf" class="action-btn interactive">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download CV
+                    </a>
+                    <a href="contact.html" class="action-btn interactive">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        Get in Touch
+                    </a>
+                </div>
             </div>
-            <div class="about-card">
-                <h2>Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>Your Current Role</h4>
-                        <div class="date">2024 &ndash; Present</div>
-                        <p>Brief description of your current responsibilities, key achievements, and the impact you've made in this role.</p>
+        </section>
+
+        <h2 class="section-title">Experience</h2>
+        <section class="experience-list">
+            
+            <h3 class="exp-category-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                Full-Time Roles
+            </h3>
+
+            <div class="exp-item glass-panel interactive">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Financial Analyst</div>
+                        <div class="exp-company">Archcon Infrastructure Pvt. Ltd., New Delhi</div>
                     </div>
-                    <div class="timeline-item">
-                        <h4>Previous Role</h4>
-                        <div class="date">2022 &ndash; 2024</div>
-                        <p>Brief description of your previous role, the projects you led, and the skills you developed along the way.</p>
+                    <div class="exp-date">Apr 2024 – Jun 2025</div>
+                </div>
+                <div class="exp-desc">
+                    Spearheaded financial analysis initiatives that identified critical cost-saving opportunities, directly driving a 15% improvement in overall operational efficiency. Engineered interactive, real-time Power BI dashboards for executive leadership and facilitated cross-functional Lean Six Sigma frameworks to streamline complex workflows.
+                </div>
+            </div>
+
+            <div class="exp-item glass-panel interactive">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Marketing & Client Engagement</div>
+                        <div class="exp-company">Sanchi InfoTech, New Delhi</div>
                     </div>
-                    <div class="timeline-item">
-                        <h4>Earlier Experience</h4>
-                        <div class="date">2020 &ndash; 2022</div>
-                        <p>A summary of earlier career experience that helped shape your professional foundation and perspective.</p>
+                    <div class="exp-date">May 2022 – Aug 2022</div>
+                </div>
+                <div class="exp-desc">
+                    Accelerated business development efforts by conducting rigorous, targeted competitor analysis that directly resulted in a 10% increase in qualified sales leads. Completely streamlined the end-to-end client onboarding lifecycle and optimized B2B pitch workflows to enhance overall client retention and service delivery.
+                </div>
+            </div>
+
+            <h3 class="exp-category-title" style="margin-top: 4rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Concurrent & Part-Time Roles
+            </h3>
+
+            <div class="exp-item glass-panel interactive">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">After-School Team Member</div>
+                        <div class="exp-company">Kids Inc, Dublin</div>
+                    </div>
+                    <div class="exp-date">Mar 2026 – Present</div>
+                </div>
+                <div class="exp-desc">
+                    Orchestrated fast-paced daily operations and ensured strict safety compliance across dynamic after-school programs. Fostered strong, transparent communications between parents and staff, seamlessly managing these high-responsibility duties while simultaneously pursuing full-time MSc studies at UCD Smurfit.
+                </div>
+            </div>
+
+            <div class="exp-item glass-panel interactive">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Fundraiser (Sales Focus)</div>
+                        <div class="exp-company">Oxfam Ireland, Dublin</div>
+                    </div>
+                    <div class="exp-date">Jan 2026 – Mar 2026</div>
+                </div>
+                <div class="exp-desc">
+                    Consistently outperformed individual sales targets within a highly competitive, KPI-driven fundraising environment. Leveraged strategic objection handling and needs-based communication to achieve an exceptional 40% interaction-to-conversion rate, significantly driving donor acquisition and long-term retention.
+                </div>
+            </div>
+
+        </section>
+
+        <h2 class="section-title">Capabilities & Qualifications</h2>
+        <section class="skills-container glass-panel">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Strategy Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>Mckinsey 7Ps</li>
+                        <li>Blue and Red Ocean Strategy</li>
+                        <li>MoSCoW Prioritization</li>
+                        <li>Job Demands-Resources (JD-R) Model</li>
+                        <li>Lean Six Sigma Framework</li>
+                        <li>Ansoff Matrix</li>
+                        <li>BCG Matrix</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Analysis & Tools</h3>
+                    <ul class="skill-list">
+                        <li>MS Excel (Advanced)</li>
+                        <li>Power BI (Data Visualisation)</li>
+                        <li>Financial Modelling & Analysis</li>
+                        <li>Market Research & Benchmarking</li>
+                        <li>Problem Solving & Critical Thinking</li>
+                        <li>R(Statistical Modelling)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Communication & Digital</h3>
+                    <ul class="skill-list">
+                        <li>Executive Decks & Presentations</li>
+                        <li>Canva(Design and Visualisation)</li>
+                        <li>B2B Pitching & Stakeholder Engagement</li>
+                        <li>Cross-functional Team Collaboration</li>
+                        <li>Strategic Thinking & Learning Agility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="certifications-block">
+                <div class="skill-category">
+                    <h3 style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">Certifications</h3>
+                </div>
+                <div class="certifications-grid">
+                    <div class="cert-tag interactive">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Lean Six Sigma Yellow Belt Certified
+                    </div>
+                    <div class="cert-tag interactive">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        How to Create a Jira SCRUM Project
+                    </div>
+                    <div class="cert-tag interactive">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Excel Skills for Business
                     </div>
                 </div>
             </div>
-            <div class="about-card">
-                <h2>Skills &amp; Tools</h2>
-                <p>Here are some of the skills and tools I work with regularly:</p>
-                <div class="skills-grid">
-                    <span class="skill-tag">Project Management</span>
-                    <span class="skill-tag">Agile / Scrum</span>
-                    <span class="skill-tag">Stakeholder Management</span>
-                    <span class="skill-tag">Strategic Planning</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">Jira</span>
-                    <span class="skill-tag">Confluence</span>
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">MS Office Suite</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="divider"><hr></div>
-    <footer>
-        <p>&copy; 2026 Achal Tyagi</p>
-        <div class="social-links">
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="mailto:achal.tyagi@email.com">Email</a>
+        <section class="cta-section">
+            <h2>Want to Work Together?</h2>
+            <p>Open to graduate programmes, consulting roles, and project work. Based in Dublin, available remotely or to relocate.</p>
+            <a href="contact.html" class="cta-btn interactive">Get in Touch</a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <div class="brand-name interactive">ACHAL TYAGI</div>
+            <div class="footer-copyright">© 2026 Achal Tyagi · Dublin</div>
+        </div>
+        
+        <div class="footer-right">
+            
+            <div class="footer-col">
+                <div class="footer-heading">Navigation</div>
+                <nav class="footer-nav">
+                    <a href="home.html" class="interactive">Home</a>
+                    <a href="about.html" class="interactive">About</a>
+                    <a href="work.html" class="interactive">Work</a>
+                    <a href="interests.html" class="interactive">Interests</a>
+                </nav>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-heading">Connect</div>
+                <nav class="footer-nav">
+                    <a href="mailto:achaltyagi02@gmail.com" class="interactive">Email</a>
+                    <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">LinkedIn</a>
+                </nav>
+            </div>
+
         </div>
     </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+        let isMoving = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; 
+            mouseY = e.clientY;
+            if (!isMoving) {
+                isMoving = true;
+                requestAnimationFrame(() => {
+                    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+                    isMoving = false;
+                });
+            }
+        }, { passive: true });
+
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15; 
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.body.addEventListener('mouseover', (e) => {
+            if(e.target.closest('.interactive, a, button, .exp-item, .cert-tag, .profile-img-container')) {
+                cursorOutline.classList.add('hover-active');
+            }
+        });
+        document.body.addEventListener('mouseout', (e) => {
+            if(e.target.closest('.interactive, a, button, .exp-item, .cert-tag, .profile-img-container')) {
+                cursorOutline.classList.remove('hover-active');
+            }
+        });
+    </script>
 </body>
 </html>

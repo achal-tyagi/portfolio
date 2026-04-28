@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interests | Achal Tyagi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           NEON PULSE THEME (High-Performance Mode)
+           ========================================= */
+        :root {
+            --bg-base: #121212; 
+            --glass-bg: rgba(30, 30, 30, 0.4);
+            --glass-hover: rgba(45, 45, 45, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff; 
+            --text-muted: #a8a8a8; 
+            --text-meta: #777777;
+            --accent-gold: #ff00ea; 
+            --accent-glow: rgba(255, 0, 234, 0.25);
+            --nav-height: 75px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            cursor: none; 
+        }
+
+        /* Optimized Background */
+        .bg-mesh {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-image: 
+                radial-gradient(circle at 15% 40%, rgba(255, 0, 234, 0.08), transparent 45%),
+                radial-gradient(circle at 85% 20%, rgba(100, 0, 255, 0.05), transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(255, 0, 150, 0.06), transparent 55%);
+            pointer-events: none;
+        }
+
+        /* Cursor */
+        .cursor-dot, .cursor-outline { 
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); 
+            border-radius: 50%; z-index: 9999; pointer-events: none; 
+        }
+        .cursor-dot { width: 4px; height: 4px; background-color: var(--accent-gold); } 
+        .cursor-outline { 
+            width: 32px; height: 32px; border: 1px solid rgba(255, 0, 234, 0.5); 
+            transition: width 0.2s, height 0.2s, background-color 0.2s; 
+        } 
+        .cursor-outline.hover-active { width: 48px; height: 48px; background-color: var(--accent-glow); border-color: transparent; }
+        @media (max-width: 768px) { body { cursor: auto; } .cursor-dot, .cursor-outline { display: none !important; } }
+
+        /* Glass Panel */
+        .glass-panel {
+            background: var(--glass-bg);
+            /* Reduced blur slightly to fix scroll lag on heavy pages */
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-highlight);
+            border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header */
+        .site-header {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000; background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border);
+        }
+        .brand-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-decoration: none; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; text-transform: uppercase;}
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.active { color: var(--accent-gold); text-shadow: 0 0 10px var(--accent-glow); }
+
+        .container { max-width: 1300px; width: 92%; margin: 0 auto; padding: calc(var(--nav-height) + 4rem) 0 4rem; }
+
+        /* Hero */
+        .hero { margin-bottom: 4rem; max-width: 100%; padding: 3.5rem 4rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: radial-gradient(circle, var(--accent-glow), transparent 70%); border-radius: 50%; pointer-events: none; }
+        .hero h1 { font-size: 2.5rem; font-weight: 400; letter-spacing: -0.5px; margin-bottom: 1rem; color: var(--text-main); }
+        .hero p { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height: 1.8; max-width: 800px; }
+
+        /* Layout */
+        .interests-layout { display: flex; flex-direction: column; gap: 4rem; }
+        .grid-2-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+
+        .interest-card {
+            padding: 2rem;
+            transition: border-color 0.4s ease, transform 0.4s ease;
+            display: flex; flex-direction: column; gap: 1.5rem;
+        }
+        .interest-card:hover { border-color: rgba(255, 0, 234, 0.4); transform: translateY(-4px); }
+
+        /* MEDIA STYLING */
+        .media-container {
+            width: 100%; border-radius: 12px; overflow: hidden;
+            background: #050505; border: 1px solid var(--glass-border); position: relative;
+            transform: translateZ(0); /* Hardware acceleration flag */
+        }
+
+        .media-container img, .media-container video {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .interest-card:hover .media-container img, .interest-card:hover .media-container video { transform: scale(1.03); }
+
+        /* ASPECT RATIOS */
+        .aspect-landscape { aspect-ratio: 4/3; }
+        .aspect-portrait { aspect-ratio: 3/4; }
+        .dual-media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+
+        /* CSS FIX FOR THE "BEFORE" PIC (Crops out black bars via CSS zoom) */
+        .crop-fix { transform: scale(1.25); object-position: center 25%; }
+        .interest-card:hover .media-container .crop-fix { transform: scale(1.28); }
+
+        .media-badge {
+            position: absolute; top: 1rem; left: 1rem; background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(8px); padding: 0.5rem 1rem; border-radius: 6px;
+            border: 1px solid rgba(255, 0, 234, 0.3); font-size: 0.75rem; font-weight: 600;
+            color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1.5px; z-index: 10;
+        }
+
+        /* Content */
+        .title-wrapper { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+        .interest-icon { width: 40px; height: 40px; background: rgba(255, 0, 234, 0.05); border: 1px solid rgba(255, 0, 234, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); flex-shrink: 0; }
+        .interest-icon svg { width: 20px; height: 20px; }
+        .interest-content h3 { font-size: 1.5rem; font-weight: 500; color: var(--text-main); letter-spacing: 0.5px; }
+        .interest-content p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; max-width: 95%; }
+        .full-width-card .interest-content { margin-bottom: 1rem; }
+        .full-width-card h3 { font-size: 2rem; margin-bottom: 1rem; }
+
+       /* --- QUICK CONTACT BAR --- */
+        .quick-contact-bar {
+            max-width: 1300px;
+            width: 92%;
+            margin: calc(var(--nav-height) + 2rem) auto -1rem; 
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+            gap: 1.5rem;
+            border-radius: 8px;
+            background: rgba(25, 25, 25, 0.2); 
+            z-index: 10;
+            position: relative;
+        }
+        .quick-contact-bar a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .quick-contact-bar a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+        .quick-contact-bar svg { width: 14px; height: 14px; }
+        .quick-contact-bar .divider { color: var(--glass-border); }
+        
+        @media (max-width: 768px) {
+            .quick-contact-bar { justify-content: center; } 
+        }
+
+        /* --- MULTI-COLUMN FOOTER --- */
+        .site-footer { 
+            border-top: 1px solid var(--glass-border); 
+            padding: 4rem 5% 3rem; 
+            margin-top: 5rem; 
+            background: rgba(18, 18, 18, 0.8); 
+            backdrop-filter: blur(10px); 
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-left { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-left .brand-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; }
+        .footer-copyright { font-size: 0.75rem; color: var(--text-meta); letter-spacing: 1px; }
+        .footer-right { display: flex; gap: 5rem; }
+        .footer-col { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-heading { font-size: 0.75rem; color: var(--text-main); letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        .footer-nav { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; width: fit-content; }
+        .footer-nav a:hover { color: var(--accent-gold); }
+
+        /* --- RESPONSIVE FOOTER --- */
+        @media (max-width: 900px) {
+            .site-footer { flex-direction: column; gap: 3rem; }
+            .footer-right { flex-direction: column; gap: 2.5rem; }
+        }
+    </style>
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero { padding: 2.5rem; }
+            .grid-2-col, .dual-media-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .interest-card { padding: 1.5rem; }
+            .footer-links { gap: 3rem; flex-direction: column; }
+            .site-footer { flex-direction: column; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-mesh"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <header class="site-header">
+        <a href="home.html" class="brand-name interactive">ACHAL TYAGI</a>
+        <nav class="nav-links">
+            <a href="home.html" class="interactive">Home</a>
+            <a href="about.html" class="interactive">About</a>
+            <a href="work.html" class="interactive">Work</a>
+            <a href="interests.html" class="interactive active">Interests</a>
+            <a href="contact.html" class="interactive">Contact</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="hero glass-panel">
+            <h1>Interests</h1>
+            <p>The routines, moments, and pursuits that keep me energised, grounded, and curious outside work.</p>
+        </section>
+
+        <section class="interests-layout">
+
+            <div class="grid-2-col">
+                <article class="interest-card glass-panel interactive">
+                    <div class="interest-content">
+                        <div class="title-wrapper">
+                            <div class="interest-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <h3>Competitive Football</h3>
+                        </div>
+                        <p>Sport has been a defining pillar of my discipline. Having represented my school and academy at the National level in 10th grade, as well as competing in CBSE Clusters and Zonal tournaments, football taught me the core mechanics of high-pressure teamwork and strategic execution. These skills translate directly into how I approach complex business problems today.</p>
+                    </div>
+                    <div class="media-container aspect-landscape">
+                        <img src="assets/images/Football.jpeg" alt="Competitive Football" loading="lazy" decoding="async">
+                    </div>
+                </article>
+
+                <article class="interest-card glass-panel interactive">
+                    <div class="interest-content">
+                        <div class="title-wrapper">
+                            <div class="interest-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            </div>
+                            <h3>Skies & Stillness</h3>
+                        </div>
+                        <p>Amidst a fast-paced academic and professional schedule, I find immense inspiration in the quiet aesthetics of nature. Taking a moment to observe a vibrant sunrise or the shifting canvas of an intricate sky provides a necessary mental reset, keeping me grounded, observant, and deeply appreciative of the calm before a busy week.</p>
+                    </div>
+                    <div class="media-container aspect-landscape">
+                        <img src="assets/images/Sunrise.jpeg" alt="Sunrise and Skies" loading="lazy" decoding="async">
+                    </div>
+                </article>
+            </div>
+
+            <article class="interest-card full-width-card glass-panel interactive">
+                <div class="interest-content">
+                    <div class="title-wrapper">
+                        <div class="interest-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <h3>The Fitness Journey</h3>
+                    </div>
+                    <p>My fitness journey began from a deeply personal place—I used to be very skinny and wanted to fundamentally change my physique. Over time, what started as a desire to build strength evolved into a cornerstone of my daily routine. Today, whether through rigorous strength training or long runs, physical wellbeing is my foundation for mental clarity and sustained resilience.</p>
+                </div>
+                
+                <div class="dual-media-grid">
+                    <div class="media-container aspect-portrait overflow-hidden">
+                        <div class="media-badge" style="color: #a8a8a8; border-color: rgba(255,255,255,0.2);">Before</div>
+                        <img src="assets/images/Before gym.jpeg" alt="Before Fitness Journey" loading="lazy" decoding="async" class="crop-fix">
+                    </div>
+                    <div class="media-container aspect-portrait overflow-hidden">
+                        <div class="media-badge">Current</div>
+                        <img src="assets/images/Gym.jpeg" alt="Current Fitness" loading="lazy" decoding="async" style="object-position: center 20%;">
+                    </div>
+                </div>
+            </article>
+
+            <article class="interest-card full-width-card glass-panel interactive">
+                <div class="interest-content">
+                    <div class="title-wrapper">
+                        <div class="interest-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                        <h3>Canine Companionship</h3>
+                    </div>
+                    <p>On a more personal note, I have a profound love for dogs. Their genuine warmth, loyalty, and uncomplicated presence bring a necessary and joyful balance to my life. Stepping away from screens to play or simply spend quiet time with them is the ultimate stress-reliever and the perfect counterweight to a structured and analytical professional world.</p>
+                </div>
+
+                <div class="dual-media-grid">
+                    <div class="media-container aspect-landscape">
+                        <video controls autoplay loop muted playsinline preload="none" poster="assets/images/Dogs.jpeg">
+                            <source src="assets/videos/Football Video Playing With Dog.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="media-container aspect-landscape">
+                        <img src="assets/images/Dogs.jpeg" alt="Puppies" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <div class="brand-name interactive">ACHAL TYAGI</div>
+            <div class="footer-copyright">© 2026 Achal Tyagi · Dublin</div>
+        </div>
+        
+        <div class="footer-right">
+            
+            <div class="footer-col">
+                <div class="footer-heading">Navigation</div>
+                <nav class="footer-nav">
+                    <a href="home.html" class="interactive">Home</a>
+                    <a href="about.html" class="interactive">About</a>
+                    <a href="work.html" class="interactive">Work</a>
+                    <a href="interests.html" class="interactive">Interests</a>
+                </nav>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-heading">Connect</div>
+                <nav class="footer-nav">
+                    <a href="mailto:achaltyagi02@gmail.com" class="interactive">Email</a>
+                    <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">LinkedIn</a>
+                </nav>
+            </div>
+
+        </div>
+    </footer>
+    <script>
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+        let isMoving = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; 
+            mouseY = e.clientY;
+            if (!isMoving) {
+                isMoving = true;
+                requestAnimationFrame(() => {
+                    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+                    isMoving = false;
+                });
+            }
+        }, { passive: true });
+
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15; 
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.body.addEventListener('mouseover', (e) => {
+            if(e.target.closest('.interactive, a, button, .interest-card, video')) {
+                cursorOutline.classList.add('hover-active');
+            }
+        });
+        document.body.addEventListener('mouseout', (e) => {
+            if(e.target.closest('.interactive, a, button, .interest-card, video')) {
+                cursorOutline.classList.remove('hover-active');
+            }
+        });
+    </script>
+</body>
+</html>

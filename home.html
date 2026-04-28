@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Achal Tyagi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           NEON PULSE THEME SECTION & VARIABLES
+           ========================================= */
+        :root {
+            --bg-base: #121212; 
+            --glass-bg: rgba(30, 30, 30, 0.4);
+            --glass-hover: rgba(45, 45, 45, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff; 
+            --text-muted: #a8a8a8; 
+            --text-meta: #777777;
+            --accent-gold: #ff00ea; /* Magenta Accent */
+            --accent-glow: rgba(255, 0, 234, 0.25);
+            --nav-height: 75px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            cursor: none; 
+        }
+
+        /* --- PERFORMANCE-OPTIMIZED BACKGROUND --- */
+        .bg-mesh {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-image: 
+                radial-gradient(circle at 15% 40%, rgba(255, 0, 234, 0.08), transparent 45%),
+                radial-gradient(circle at 85% 20%, rgba(100, 0, 255, 0.05), transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(255, 0, 150, 0.06), transparent 55%);
+            pointer-events: none; transform: translateZ(0); 
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline { 
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); 
+            border-radius: 50%; z-index: 9999; pointer-events: none; will-change: transform; 
+        }
+        .cursor-dot { width: 4px; height: 4px; background-color: var(--accent-gold); } 
+        .cursor-outline { 
+            width: 32px; height: 32px; border: 1px solid rgba(255, 0, 234, 0.5); 
+            transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out; 
+        } 
+        .cursor-outline.hover-active { width: 48px; height: 48px; background-color: var(--accent-glow); border-color: transparent; }
+        @media (max-width: 768px) { body { cursor: auto; } .cursor-dot, .cursor-outline { display: none !important; } }
+
+        /* --- REUSABLE GLASS PANEL CLASS --- */
+        .glass-panel {
+            background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-highlight);
+            border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); transform: translateZ(0); 
+        }
+
+        /* --- SHARED HEADER --- */
+        .site-header {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000; background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border); transform: translateZ(0);
+        }
+        .brand-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-decoration: none; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; text-transform: uppercase;}
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.active { color: var(--accent-gold); text-shadow: 0 0 10px var(--accent-glow); }
+
+        /* --- QUICK CONTACT BAR --- */
+        .quick-contact-bar {
+            max-width: 1300px; width: 92%; margin: calc(var(--nav-height) + 2rem) auto -1rem; 
+            padding: 0.8rem 1.5rem; display: flex; justify-content: flex-end; align-items: center; gap: 1.5rem;
+            border-radius: 8px; background: rgba(25, 25, 25, 0.2); z-index: 10; position: relative;
+        }
+        .quick-contact-bar a {
+            display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .quick-contact-bar a:hover { color: var(--accent-gold); transform: translateY(-2px); }
+        .quick-contact-bar svg { width: 14px; height: 14px; }
+        .quick-contact-bar .divider { color: var(--glass-border); }
+
+        /* --- LAYOUT WRAPPER --- */
+        .container { max-width: 1300px; width: 92%; margin: 0 auto; padding: 2rem 0 4rem; }
+        .section-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 6rem 0 2rem; color: var(--text-main); display: flex; align-items: center; gap: 1.5rem; }
+        .section-title::after { content: ""; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--glass-border), transparent); }
+
+        /* --- HOMEPAGE HERO (TWO COLUMN LOGIC) --- */
+        .home-hero { padding: 4rem 0 2rem; position: relative; }
+        .hero-wrapper { display: flex; align-items: center; justify-content: space-between; gap: 5rem; }
+        
+        .hero-content { flex: 1; max-width: 800px; position: relative; }
+        .hero-content::before {
+            content: ''; position: absolute; top: -20px; left: -50px; width: 250px; height: 250px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1;
+        }
+        
+        .hero-identity { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); margin-bottom: 1.5rem; display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--accent-glow); border-radius: 30px; background: rgba(255,0,234,0.05); }
+        .home-hero h1 { font-size: 3.5rem; font-weight: 400; letter-spacing: -1px; line-height: 1.1; color: var(--text-main); margin-bottom: 1.5rem; }
+        .home-hero h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 2rem; line-height: 1.4; color: #e0e0e0; }
+        .hero-body { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; font-weight: 300; }
+
+        /* Updated Image wrapper to have a sleek fallback glow if the image takes a second to load */
+        .hero-image-wrapper { 
+            flex: 0 0 380px; position: relative; 
+            background: rgba(255, 0, 234, 0.02);
+            border-radius: 16px;
+        }
+        .hero-image-wrapper::after {
+            content: ''; position: absolute; inset: -15px;
+            background: radial-gradient(circle at center, rgba(255,0,234,0.15), transparent 60%);
+            border-radius: 20px; z-index: -1;
+        }
+        .hero-image {
+            width: 100%; height: auto; border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            object-fit: cover;
+            filter: grayscale(10%) contrast(105%);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-image:hover { transform: translateY(-5px); border-color: rgba(255,0,234,0.3); filter: grayscale(0%) contrast(100%); }
+
+        /* --- FLOATING SKILLS BAR (SLEEK SINGLE STRIP) --- */
+        .sleek-marquee-container {
+            width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; 
+            overflow: hidden; padding: 1.2rem 0; margin-top: 4rem; 
+            background: rgba(18, 18, 18, 0.6); backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.04); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .sleek-marquee-container::before, .sleek-marquee-container::after { 
+            content: ''; position: absolute; top: 0; width: 12vw; height: 100%; z-index: 2; pointer-events: none; 
+        }
+        .sleek-marquee-container::before { left: 0; background: linear-gradient(to right, var(--bg-base), transparent); }
+        .sleek-marquee-container::after { right: 0; background: linear-gradient(to left, var(--bg-base), transparent); }
+        
+        .sleek-marquee-track { 
+            display: flex; width: max-content; gap: 3rem; 
+            animation: scroll-left 50s linear infinite; align-items: center;
+        }
+        .sleek-marquee-container:hover .sleek-marquee-track { animation-play-state: paused; }
+
+        .sleek-block { display: flex; align-items: center; white-space: nowrap; }
+        .m-category { 
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; 
+            color: var(--accent-gold); font-weight: 600; margin-right: 1rem; 
+            padding-right: 1rem; border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .m-items { 
+            font-size: 0.75rem; color: var(--text-muted); font-weight: 400; letter-spacing: 0.8px; 
+        }
+        .m-dot { color: var(--text-meta); margin: 0 0.5rem; opacity: 0.5; }
+
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- FEATURED PROJECTS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .fp-card { padding: 2.5rem; display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: all 0.4s ease; cursor: none; }
+        .fp-card:hover { transform: translateY(-8px); border-color: rgba(255, 0, 234, 0.3); background: var(--glass-hover); }
+        .fp-category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-gold); margin-bottom: 1rem; font-weight: 600; }
+        .fp-title { font-size: 1.4rem; font-weight: 500; margin-bottom: 1rem; color: var(--text-main); }
+        .fp-brief { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; flex-grow: 1; margin-bottom: 2.5rem; }
+        .fp-link { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); border-top: 1px solid var(--glass-border); padding-top: 1.5rem; transition: color 0.3s; }
+        .fp-card:hover .fp-link { color: var(--accent-gold); }
+        .view-all-cta { text-align: center; margin-top: 4rem; }
+        .view-all-btn { display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); border-radius: 30px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: all 0.3s ease; }
+        .view-all-btn:hover { border-color: var(--accent-gold); background: rgba(255,0,234,0.05); color: var(--accent-gold); box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* --- TESTIMONIALS / REFERENCES --- */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .testimonial-card { padding: 3rem 2.5rem 2.5rem; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+        .quote-icon { position: absolute; top: 1.5rem; left: 2rem; font-family: serif; font-size: 5rem; line-height: 1; color: var(--accent-glow); opacity: 0.4; }
+        .t-quote { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; font-style: italic; position: relative; z-index: 2; margin-bottom: 2.5rem; flex-grow: 1; }
+        .t-author-box { border-top: 1px dashed var(--glass-border); padding-top: 1.5rem; }
+        .t-name { font-size: 0.9rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.2rem; display: block; }
+        .t-role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-gold); }
+
+        /* --- FINAL CTA --- */
+        .final-cta { text-align: center; padding: 8rem 0 4rem; margin-top: 4rem; border-top: 1px solid var(--glass-border); }
+        .final-cta h2 { font-size: 2.5rem; font-weight: 400; color: var(--text-main); margin-bottom: 1rem; letter-spacing: -0.5px;}
+        .final-cta p { font-size: 0.95rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8;}
+        .cta-btn { display: inline-block; background: rgba(255, 0, 234, 0.05); color: var(--accent-gold); padding: 1rem 2.5rem; border-radius: 30px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(255, 0, 234, 0.3); text-decoration: none; transition: all 0.3s ease; }
+        .cta-btn:hover { background: var(--accent-gold); color: var(--bg-base); box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* --- SHARED MULTI-COLUMN FOOTER --- */
+        .site-footer { border-top: 1px solid var(--glass-border); padding: 4rem 5% 3rem; margin-top: 5rem; background: rgba(18, 18, 18, 0.8); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: flex-start; }
+        .footer-left { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-left .brand-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; }
+        .footer-copyright { font-size: 0.75rem; color: var(--text-meta); letter-spacing: 1px; }
+        .footer-right { display: flex; gap: 5rem; }
+        .footer-col { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-heading { font-size: 0.75rem; color: var(--text-main); letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
+        .footer-nav { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.3s ease; width: fit-content; }
+        .footer-nav a:hover { color: var(--accent-gold); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero-wrapper { flex-direction: column; text-align: left; gap: 3rem; }
+            .hero-image-wrapper { width: 100%; max-width: 450px; margin: 0 auto; }
+            .projects-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .home-hero h1 { font-size: 2.5rem; }
+            .home-hero h2 { font-size: 1.2rem; }
+            .projects-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .site-footer { flex-direction: column; gap: 3rem; }
+            .footer-right { flex-direction: column; gap: 2.5rem; }
+            .quick-contact-bar { justify-content: center; } 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-mesh"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <header class="site-header">
+        <a href="home.html" class="brand-name interactive">ACHAL TYAGI</a>
+        <nav class="nav-links">
+            <a href="home.html" class="interactive active">Home</a>
+            <a href="about.html" class="interactive">About</a>
+            <a href="work.html" class="interactive">Work</a>
+            <a href="interests.html" class="interactive">Interests</a>
+            <a href="contact.html" class="interactive">Contact</a>
+        </nav>
+    </header>
+
+    <div class="quick-contact-bar glass-panel interactive">
+        <a href="mailto:achaltyagi02@gmail.com" class="interactive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            achaltyagi02@gmail.com
+        </a>
+        <span class="divider">|</span>
+        <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn
+        </a>
+    </div>
+
+    <main class="container">
+
+        <section class="home-hero">
+            <div class="hero-wrapper">
+                
+                <div class="hero-content">
+                    <div class="hero-identity interactive">MSc Management Consultancy | UCD Michael Smurfit Graduate Business School</div>
+                    <h1>Bridging data-driven insights with strategic growth.</h1>
+                    <h2 class="hero-subhead">Translating complex data into actionable operational frameworks.</h2>
+                    
+                    <p class="hero-body">
+                        I am currently an MSc Management Consultancy student at UCD Michael Smurfit Graduate Business School. My professional focus sits at the intersection of rigorous analytical thought and real-world implementation.
+                    </p>
+                    <p class="hero-body">
+                        My experience spans financial modelling, market entry strategy, stakeholder engagement, operations, and corporate partnerships. Currently, I am engaged with Crowe Consulting, delivering strategic operational reviews and accountability frameworks to streamline their internal consulting portfolio.
+                    </p>
+                </div>
+
+                <div class="hero-image-wrapper interactive">
+                    <img src="assets/images/Achal_Tyagi.jpeg" alt="Achal Tyagi" class="hero-image">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="sleek-marquee-container interactive">
+            <div class="sleek-marquee-track">
+                
+                
+                <div class="sleek-block">
+                    <span class="m-category">Tools</span>
+                    <span class="m-items">Excel (Advanced) <span class="m-dot">&middot;</span> Power BI <span class="m-dot">&middot;</span> Canva <span class="m-dot">&middot;</span> Financial Modelling</span>
+                </div>
+
+                <div class="sleek-block">
+                    <span class="m-category">Frameworks</span>
+                    <span class="m-items"> Lean Six Sigma Framework <span class="m-dot">&middot;</span> Mckinsey 7Ps <span class="m-dot">&middot;</span> JD-R Model <span class="m-dot">&middot;</span> BCG Matrix </span>
+                </div>
+
+                <div class="sleek-block">
+                    <span class="m-category">Current</span>
+                    <span class="m-items">MSc Management Consultancy <span class="m-dot">&middot;</span> Crowe Consulting Project</span>
+                </div>
+
+                <div class="sleek-block">
+                    <span class="m-category">Open To</span>
+                    <span class="m-items">Full-time Consulting/Analyst roles <span class="m-dot">&middot;</span> Graduate Programmes <span class="m-dot">&middot;</span> Dublin / Remote / Relocate</span>
+                </div>
+
+                
+                 <div class="sleek-block">
+                    <span class="m-category">Tools</span>
+                    <span class="m-items">Excel (Advanced) <span class="m-dot">&middot;</span> Power BI <span class="m-dot">&middot;</span> Canva <span class="m-dot">&middot;</span> Financial Modelling</span>
+                </div>
+
+                <div class="sleek-block">
+                    <span class="m-category">Frameworks</span>
+                    <span class="m-items"> Lean Six Sigma Framework <span class="m-dot">&middot;</span> Mckinsey 7Ps <span class="m-dot">&middot;</span> JD-R Model <span class="m-dot">&middot;</span> BCG Matrix </span>
+                </div>
+
+                <div class="sleek-block">
+                    <span class="m-category">Current</span>
+                    <span class="m-items">MSc Management Consultancy <span class="m-dot">&middot;</span> Crowe Consulting Project</span>
+                </div>
+
+                <div class="sleek-block">
+                    <span class="m-category">Open To</span>
+                    <span class="m-items">Full-time Consulting/Analyst roles <span class="m-dot">&middot;</span> Graduate Programmes <span class="m-dot">&middot;</span> Dublin / Remote / Relocate</span>
+                </div>
+
+            </div>
+        </section>
+
+        <h2 class="section-title">FEATURED PROJECTS</h2>
+        <section class="projects-grid">
+            
+            <a href="work.html" class="fp-card glass-panel interactive">
+                <span class="fp-category">International Strategy</span>
+                <h3 class="fp-title">Blynk Drinks Market Entry</h3>
+                <p class="fp-brief">Advised the CEO on global expansion, delivering a comprehensive, data-driven market entry roadmap for the KSA, UAE, and Nordic regions using targeted benchmarking.</p>
+                <div class="fp-link">
+                    Explore Case
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+            <a href="work.html" class="fp-card glass-panel interactive">
+                <span class="fp-category">Organisational Behaviour</span>
+                <h3 class="fp-title">Ecomm Edge Motivation & Change</h3>
+                <p class="fp-brief">Diagnosed the root cause of a severe drop in sales closing rates using the Job Demands-Resources model, providing an operational turnaround strategy for a D2C accelerator.</p>
+                <div class="fp-link">
+                    Explore Case
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+            <a href="work.html" class="fp-card glass-panel interactive">
+                <span class="fp-category">Operations & Governance</span>
+                <h3 class="fp-title">Crowe Ireland Operational Control</h3>
+                <p class="fp-brief">Conducted a strategic operational review for Crowe Ireland’s consulting portfolio, architecting a robust 90-day implementation roadmap across resource tracking and governance.</p>
+                <div class="fp-link">
+                    Explore Case
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+        </section>
+
+        <div class="view-all-cta">
+            <a href="work.html" class="view-all-btn interactive">
+                Click here to see all projects
+            </a>
+        </div>
+
+        <h2 class="section-title">REFERENCES</h2>
+        <section class="testimonials-grid">
+
+            <div class="testimonial-card glass-panel interactive">
+                <div class="quote-icon">"</div>
+                <p class="t-quote">The team provided us with an exceptional, data-driven market entry roadmap for the UAE, KSA, and Nordic regions. We were particularly impressed by the depth of their competitor benchmarking and how effectively they translated complex regional data into actionable, prioritized steps.</p>
+                <div class="t-author-box">
+                    <span class="t-name">David Hartigan</span>
+                    <span class="t-role">CEO, Blynk Drinks</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card glass-panel interactive">
+                <div class="quote-icon">"</div>
+                <p class="t-quote">The insights you guys presented were genuinely eye-opening. I particularly liked the balanced approach you took, considering both the employees’ perspective and the company’s objectives. The depth of research, clarity of presentation, and practical framing of the findings made the project very effective and easy to follow. Overall, the project was very well presented, thoughtfully structured, and highly practical. We will certainly be using your recommendations as we move forward.</p>
+                <div class="t-author-box">
+                    <span class="t-name">Mannat Cheema</span>
+                    <span class="t-role">Chief Operating Officer, Ecom Edge</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card glass-panel interactive">
+                <div class="quote-icon">"</div>
+                <p class="t-quote">Achal has been an outstanding and highly reliable addition to our team at Kids Inc. He consistently demonstrates a remarkable ability to manage fast-paced daily operations while maintaining the strictest standards of safety and compliance. The thing that truly sets Achal apart is his excellent communication style; he fosters a transparent and welcoming environment for both our staff and the parents.</p>
+                <div class="t-author-box">
+                    <span class="t-name">Elena Cid Ibanez</span>
+                    <span class="t-role">Area Manager, Kids Inc</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="final-cta">
+            <h2>Let’s build something together.</h2>
+            <p>Open for strategic collaborations, consulting roles, or a casual chat about football.</p>
+            <a href="contact.html" class="cta-btn interactive">Get In Touch</a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <div class="brand-name interactive">ACHAL TYAGI</div>
+            <div class="footer-copyright">© 2026 Achal Tyagi · Dublin</div>
+        </div>
+        
+        <div class="footer-right">
+            <div class="footer-col">
+                <div class="footer-heading">Navigation</div>
+                <nav class="footer-nav">
+                    <a href="home.html" class="interactive">Home</a>
+                    <a href="about.html" class="interactive">About</a>
+                    <a href="work.html" class="interactive">Work</a>
+                    <a href="interests.html" class="interactive">Interests</a>
+                </nav>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-heading">Connect</div>
+                <nav class="footer-nav">
+                    <a href="mailto:achaltyagi02@gmail.com" class="interactive">Email</a>
+                    <a href="https://www.linkedin.com/in/achal-tyagi-b31291377/" target="_blank" class="interactive">LinkedIn</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+        let isMoving = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; 
+            mouseY = e.clientY;
+            if (!isMoving) {
+                isMoving = true;
+                requestAnimationFrame(() => {
+                    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+                    isMoving = false;
+                });
+            }
+        }, { passive: true });
+
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15; 
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.body.addEventListener('mouseover', (e) => {
+            if(e.target.closest('.interactive, a, button, .fp-card, .testimonial-card, .sleek-marquee-container, .hero-image-wrapper')) {
+                cursorOutline.classList.add('hover-active');
+            }
+        });
+        document.body.addEventListener('mouseout', (e) => {
+            if(e.target.closest('.interactive, a, button, .fp-card, .testimonial-card, .sleek-marquee-container, .hero-image-wrapper')) {
+                cursorOutline.classList.remove('hover-active');
+            }
+        });
+    </script>
+</body>
+</html>
